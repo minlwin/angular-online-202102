@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light nav-background">
+  <div class="container">
+    <span class="navbar-brand">Template Driven Form</span>
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          class="nav-link">Simple Form</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="container pt-3">
+  <router-outlet></router-outlet>
+</section>

@@ -1,0 +1,22 @@
+<div class="container">
+
+  <h1 class="mt-4">Component Lifecycle</h1>
+
+  <div class="mt-3 mb-4">
+    <div class="card">
+      <ul class="nav">
+
+        <li class="nav-item">
+          <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">Overview</a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="['/on-change']" routerLinkActive="active" class="nav-link">On Change</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

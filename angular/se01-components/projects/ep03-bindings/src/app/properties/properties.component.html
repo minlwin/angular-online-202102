@@ -1,0 +1,60 @@
+<h1>Property Binding</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        DOM Property
+    </div>
+
+    <div class="card-body">
+        <button (click)="switchBtnState()" class="btn btn-primary mr-2">{{hideBtn ? 'Show' : 'Hide'}}</button>
+        <button [hidden]="hideBtn" class="btn btn-danger">Target</button>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        Component Property
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <!-- Input from Parent -->
+            <div class="col-4">
+                <div class="input-group">
+                    <input #keywordInput type="text" class="form-control" placeholder="Enter Keyword">
+                    <div class="input-group-append">
+                        <span (click)="setKeyword(keywordInput)" class="input-group-text">ADD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Child Component -->
+            <div class="col-8">
+                <app-prop-child-binding [keyword]="targetKeyword"></app-prop-child-binding>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        Directive Property
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <select #colorSelect (change)="backGround = colorSelect.value" class="form-control">
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="orange">Orange</option>
+                    <option value="skyblue">Sky Blue</option>
+                </select>
+            </div>
+
+            <div [appBackgroundColor]="backGround" class="col-8 bordered"></div>
+        </div>
+    </div>
+</div>

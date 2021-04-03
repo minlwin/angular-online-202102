@@ -1,0 +1,52 @@
+<h1>Attribute, Class & Style</h1>
+
+<div class="card mb-4">
+    <div class="card-header">Attribute Binding</div>
+    <div class="card-body">
+        <input #slider (change)="currentValue = slider.value" class="mr-4" step="10" style="width: 300px;" type="range"
+            min="-100" max="100" [value]="currentValue" aria-valuemin="-100" aria-valuemax="100"
+            [attr.aria-valuenow]="currentValue">
+
+        <span>{{currentValue}}</span>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">Class Binding</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <select #bgColorSelect (change)="multiClass = bgColorSelect.value" class="form-control">
+                    <option value="bg-info">Gray</option>
+                    <option value="bg-primary">Blue</option>
+                    <option value="bg-danger">Red</option>
+                </select>
+            </div>
+
+            <div class="col-8" [class.text-white]="singleClass" (click)="singleClass = !singleClass"
+                [class]="multiClass">
+                <h3>Class Binding Result</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">Style Binding</div>
+
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-4">
+                <input #sizeInput type="number" (input)="changeTextSize(sizeInput.value)" type="range" min="10" max="40"
+                    [value]="textSize" class="w-100">
+                <br>
+                <span>{{textSize}}</span>
+            </div>
+
+            <div class="col-8">
+                <span [style.font-size.px]="textSize">Style Binding</span>
+            </div>
+        </div>
+    </div>
+</div>

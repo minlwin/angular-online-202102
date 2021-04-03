@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <div class="container">
+    <span class="navbar-brand">Reactive Form</span>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          class="nav-link">Simple Form</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container pt-4">
+  <router-outlet></router-outlet>
+</div>

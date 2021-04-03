@@ -1,0 +1,29 @@
+<h3>Lifecycle Overview</h3>
+
+<p>{{message}}</p>
+
+<div id="counter" class="row" style="width: 30%;">
+    <div class="col">
+        <span (click)="countUp(false)" class="btn btn-outline-primary">Down</span>
+    </div>
+    <div class="col">
+        <h4>{{count}}</h4>
+    </div>
+    <div class="col">
+        <span (click)="countUp(true)" class="btn btn-outline-primary">Up</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="mt-4">
+            <h4>Event Logs from Parent</h4>
+            <ul>
+                <li *ngFor="let log of logList">{{log}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col">
+        <app-child [message]="messageForChild"></app-child>
+    </div>
+</div>

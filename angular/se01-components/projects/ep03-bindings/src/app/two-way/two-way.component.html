@@ -1,0 +1,50 @@
+<h1>Two Way Data Binding</h1>
+
+<div class="card mb-4">
+
+    <div class="card-header">Simple Binding</div>
+
+    <div class="card-body">
+
+        <div class="form-row">
+
+            <div class="form-group col">
+                <label>Parent Input</label>
+                <input #parentInput type="text" class="form-control" (input)="parentValue = parentInput.value">
+            </div>
+
+            <div class="form-group col">
+                <label>Parent Output</label>
+                <span class="form-control">{{parentValue}}</span>
+            </div>
+
+            <div class="form-group col">
+                <app-child-input [(data)]="parentValue"></app-child-input>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">Using Form Module</div>
+
+    <div class="card-body">
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label>Output Only</label>
+                <input type="text" #formOut (input)="formValue = formOut.value" class="form-control">
+            </div>
+
+            <div class="form-group col">
+                <label>Text Interpolation</label>
+                <span class="form-control">{{formValue}}</span>
+            </div>
+
+            <div class="form-group col">
+                <label>Form Model</label>
+                <input type="text" [(ngModel)]="formValue" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
