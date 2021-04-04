@@ -26,13 +26,18 @@ public class DistrictService extends AbstractService<District>{
 		return d;
 	}
 
-	public List<District> search(int state, String name) {
+	public List<District> search(String region, int state, String name) {
 		StringBuffer sb = new StringBuffer("select d from District d where 1 = 1");
 		Map<String, Object> params = new HashMap<>();
 
 		if(state > 0) {
 			sb.append(" and d.state.id = :state");
 			params.put("state", state);
+		} else {
+			if(StringUtils.hasLength(region)) {
+				sb.append(" and d.state.region = :region");
+				params.put("region", region);
+			}			
 		}
 
 		if(StringUtils.hasLength(name)) {

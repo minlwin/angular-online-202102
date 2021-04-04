@@ -26,18 +26,25 @@ public class TownshipService extends AbstractService<Township> {
 		return t;
 	}
 
-	public List<Township> search(int state, int district, String name) {
+	public List<Township> search(String region, int state, int district, String name) {
 		StringBuffer sb = new StringBuffer("select t from Township t where 1 = 1");
 		Map<String, Object> params = new HashMap<>();
 		
-		if(state > 0) {
-			sb.append(" and t.district.state.id = :state");
-			params.put("state", state);
-		}
-
 		if(district > 0) {
 			sb.append(" and t.district.id = :district");
 			params.put("district", district);
+		} else {
+			if(state > 0) {
+				sb.append(" and t.district.state.id = :state");
+				params.put("state", state);
+			} else {
+				
+				if(StringUtils.hasLength(region)) {
+					sb.append(" and t.district.state.region = :region");
+					params.put("region", region);
+				}
+			}
+			
 		}
 
 		if(StringUtils.hasLength(name)) {

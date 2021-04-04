@@ -23,10 +23,11 @@ public class TownshipApi extends AbstractApi<Township>{
 	
 	@GetMapping
 	public List<Township> search(
+			@RequestParam(required = false) String region,
 			@RequestParam(required = false, defaultValue = "0") int state, 
 			@RequestParam(required = false, defaultValue = "0") int district, 
 			@RequestParam(required = false) String name) {
-		return service.search(state, district, name);
+		return service.search(region, state, district, name);
 	}
 	
 }

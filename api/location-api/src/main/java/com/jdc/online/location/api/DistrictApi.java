@@ -23,9 +23,10 @@ public class DistrictApi extends AbstractApi<District>{
 	
 	@GetMapping
 	public List<District> search(
+			@RequestParam(required = false) String region, 
 			@RequestParam(required = false, defaultValue = "0") int state, 
 			@RequestParam(required = false) String name) {
-		return service.search(state, name);
+		return service.search(region, state, name);
 	}
 
 }
