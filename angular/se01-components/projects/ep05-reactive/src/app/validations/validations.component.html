@@ -14,20 +14,70 @@
                     <div class="form-group">
                         <label>Name</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Name">
+                            <input formControlName="name" type="text" class="form-control" placeholder="Enter Name">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa" [ngClass]="getStatus('name')"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <div class="input-group">
+                            <input type="tel" formControlName="phone" class="form-control" placeholder="Enter Phone">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa" [ngClass]="getStatus('phone')"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div class="input-group">
+                            <input type="email" formControlName="email" class="form-control" placeholder="Enter Email">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa" [ngClass]="getStatus('email')"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <button (click)="form.reset()" class="btn btn-outline-secondary mr-2">
+                            <i class="fa fa-recycle"></i> Clear
+                        </button>
+
+                        <button [disabled]="form.invalid" (click)="save()" class="btn btn-outline-primary">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </div>
     </div>
 
     <div class="col">
-        <div class="card">
+        <div class="card mb-2">
             <div class="card-header">Form Value</div>
 
             <div class="card-body">
                 <pre>{{form.value | json}}</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Validation Status</div>
+
+            <div class="card-body">
+                <pre>{{validationStatus | json}}</pre>
             </div>
         </div>
     </div>
