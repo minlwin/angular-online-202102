@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SimpleComponent } from './simple/simple.component';
 import { AppCommonModule } from './app-common/app-common.module';
+import { ValidationsComponent } from './validations/validations.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleComponent
+    SimpleComponent,
+    ValidationsComponent
   ],
   imports: [
     BrowserModule,

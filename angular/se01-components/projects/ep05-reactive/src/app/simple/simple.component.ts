@@ -19,7 +19,7 @@ export class SimpleComponent {
 
     this.form = builder.group({
       name: ["", [Validators.required, Validators.maxLength(8)]],
-      category: "",
+      category: ["", Validators.required],
       price: 0,
       size: builder.group({
         us: 0,
@@ -43,7 +43,7 @@ export class SimpleComponent {
   }
 
   addColor() {
-    this.colors.push(this.builder.control(""))
+    this.colors.push(this.builder.control("", Validators.required))
   }
 
   removeColor(index: number) {
@@ -59,8 +59,8 @@ export class SimpleComponent {
 
   addProp() {
     this.props.push(this.builder.group({
-      property: "",
-      value: ""
+      property: ["", Validators.required],
+      value: ["", Validators.required]
     }))
   }
 

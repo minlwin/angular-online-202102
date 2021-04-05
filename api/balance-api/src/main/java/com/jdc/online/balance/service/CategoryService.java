@@ -26,7 +26,7 @@ public class CategoryService extends AbstractService<Category, Integer>{
 
 	public List<Category> search(String name) {
 		
-		StringBuffer sb = new StringBuffer("select c from Xategory c where 1 = 1");
+		StringBuffer sb = new StringBuffer("select c from Category c where 1 = 1");
 		Map<String, Object> params = new HashMap<>();
 		
 		if(StringUtils.hasLength(name)) {

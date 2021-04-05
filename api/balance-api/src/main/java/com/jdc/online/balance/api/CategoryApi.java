@@ -22,7 +22,7 @@ public class CategoryApi extends AbstractApi<Category, Integer>{
 	}
 	
 	@GetMapping
-	public List<Category> search(@RequestParam String name) {
+	public List<Category> search(@RequestParam(required = false) String name) {
 		return service.search(name);
 	}
 

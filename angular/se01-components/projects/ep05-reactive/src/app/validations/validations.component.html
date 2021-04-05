@@ -1,0 +1,34 @@
+<h3>Validations</h3>
+
+<div class="row">
+
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Form
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="form" class="form">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter Name">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-header">Form Value</div>
+
+            <div class="card-body">
+                <pre>{{form.value | json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>
