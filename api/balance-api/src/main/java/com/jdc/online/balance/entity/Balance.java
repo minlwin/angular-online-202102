@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -18,15 +21,15 @@ public class Balance {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate useDate;
 	@Column(nullable = false)
 	private Type type;
-	@Column(nullable = false)
-	private String category;
-	private int income;
-	private int expance;
-	private int incomeTotal;
-	private int expanceTotal;
+
+	@ManyToOne(optional = false)
+	private Category category;
+	
+	private int total;
 	
 	public enum Type {
 		Income, Expance
