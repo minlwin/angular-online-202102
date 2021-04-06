@@ -1,0 +1,51 @@
+<h3>Districts</h3>
+
+<form [formGroup]="form" class="form-inline mt-4 mb-4">
+    <div class="form-group mr-2">
+        <select formControlName="region" class="form-control">
+            <option value="">All Regions</option>
+            <option *ngFor="let item of regions" [value]="item">{{item}}</option>
+        </select>
+    </div>
+
+    <div class="form-group mr-2">
+        <select formControlName="state" class="form-control">
+            <option value="">All States</option>
+            <option *ngFor="let item of states" [value]="item.id">{{item.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group mr-2">
+        <input type="text" formControlName="name" class="form-control" placeholder="Search Name">
+    </div>
+
+    <div class="form-group">
+        <button (click)="search()" class="btn btn-outline-info">
+            <i class="fa fa-search"></i> Search
+        </button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Region</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Burmese Name</th>
+            <th>Capital</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.id}}</td>
+            <td>{{item.state.region}}</td>
+            <td>{{item.state.name}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.mmName}}</td>
+            <td>{{item.capital}}</td>
+        </tr>
+    </tbody>
+</table>
