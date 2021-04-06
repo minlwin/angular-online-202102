@@ -32,6 +32,6 @@ public class Balance {
 	private int total;
 	
 	public enum Type {
-		Income, Expance
+		Income, Expense
 	}
 }
