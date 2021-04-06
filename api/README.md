@@ -2,6 +2,17 @@
 
 Heare is the place of API projects to test angular http client lesssons. These projects are build by spring boots technology.
 
+```
+# Change Directory to Project root folder
+cd [project root]
+
+# Maven Update
+mvn clean install -U
+
+# Run Spring Boots Application
+mvn spring-boot:run
+```
+
 ## Location API
 
 This api serve administrative states informations of Myanmar.
