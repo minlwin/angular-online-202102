@@ -1,0 +1,34 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h5 class="modal-title">{{form.value.id ? 'Edit' : 'Add'}} Category</h5>
+        </div>
+
+        <form [formGroup]="form" class="modal-body">
+
+            <div class="form-group">
+                <label>Balance Type</label>
+                <select formControlName="type" class="form-control">
+                    <option *ngFor="let item of types" [value]="item">{{item}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" formControlName="name" class="form-control" placeholder="Enter Category Name">
+            </div>
+
+        </form>
+
+        <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-info mr-2">
+                <i class="fa fa-recycle"></i> Clear
+            </button>
+
+            <button [disabled]="form.invalid" (click)="save()" class="btn btn-secondary">
+                <i class="fa fa-save"></i> Save
+            </button>
+        </div>
+    </div>
+</div>

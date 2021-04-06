@@ -1,0 +1,27 @@
+<h3>Category Management</h3>
+
+<div class="mt-4 mb-4 clearfix">
+    <button (click)="addNew()" class="btn btn-secondary pull-right">
+        <i class="fa fa-plus"></i> Add New
+    </button>
+</div>
+
+<div class="row">
+    <div *ngFor="let item of list" class="col-4 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <span>{{item.type}}</span>
+                <a class="pull-right" (click)="edit(item)">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <span class="text-secondary">{{item.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editDialog" class="modal fade">
+    <app-category-edit [item]="target" [types]="types" (onSave)="save($event)"></app-category-edit>
+</div>
