@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { SimpleComponent } from './simple/simple.component';
 import { AppCommonModule } from './app-common/app-common.module';
 import { ValidationsComponent } from './validations/validations.component';
+import { ValueChangesComponent } from './value-changes/value-changes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SimpleComponent,
-    ValidationsComponent
+    ValidationsComponent,
+    ValueChangesComponent
   ],
   imports: [
     BrowserModule,

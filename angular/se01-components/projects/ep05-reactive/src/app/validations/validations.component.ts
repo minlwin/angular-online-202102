@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppValidators } from './app-validators';
 
 @Component({
   templateUrl: './validations.component.html',
 })
-export class ValidationsComponent {
+export class ValidationsComponent implements OnInit {
 
   form: FormGroup
+
+  formValue: any
 
   constructor(builder: FormBuilder) {
     this.form = builder.group({
@@ -16,6 +18,10 @@ export class ValidationsComponent {
       email: ["", Validators.compose([Validators.required, Validators.email])]
     })
 
+  }
+
+  ngOnInit(): void {
+    this.formValue = this.form.value
   }
 
   save() {
