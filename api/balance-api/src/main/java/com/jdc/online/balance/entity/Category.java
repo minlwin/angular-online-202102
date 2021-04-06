@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.jdc.online.balance.entity.Balance.Type;
+
 import lombok.Data;
 
 @Entity
@@ -14,5 +16,6 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private Type type;
 	private String name;
 }

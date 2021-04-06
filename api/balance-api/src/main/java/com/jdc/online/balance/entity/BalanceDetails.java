@@ -19,6 +19,7 @@ public class BalanceDetails {
 	@ManyToOne(optional = false)
 	private Balance balance;
 	private String reason;
+	private String details;
 	private int amount;
 	@Transient
 	private boolean deleted;

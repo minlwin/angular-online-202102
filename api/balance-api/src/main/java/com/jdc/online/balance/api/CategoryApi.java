@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jdc.online.balance.entity.Balance.Type;
 import com.jdc.online.balance.entity.Category;
 import com.jdc.online.balance.service.CategoryService;
 
@@ -22,8 +23,8 @@ public class CategoryApi extends AbstractApi<Category, Integer>{
 	}
 	
 	@GetMapping
-	public List<Category> search(@RequestParam(required = false) String name) {
-		return service.search(name);
+	public List<Category> search(@RequestParam(required = false) Type type, @RequestParam(required = false) String name) {
+		return service.search(type, name);
 	}
 
 }

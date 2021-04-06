@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.jdc.online.balance.entity.Balance.Type;
 import com.jdc.online.balance.entity.Category;
 import com.jdc.online.balance.repo.CategoryRepo;
 
@@ -24,11 +25,16 @@ public class CategoryService extends AbstractService<Category, Integer>{
 		return result;
 	}
 
-	public List<Category> search(String name) {
+	public List<Category> search(Type type, String name) {
 		
 		StringBuffer sb = new StringBuffer("select c from Category c where 1 = 1");
 		Map<String, Object> params = new HashMap<>();
 		
+		if(null != type) {
+			sb.append(" and c.type = :type");
+			params.put("type", type);
+		}
+
 		if(StringUtils.hasLength(name)) {
 			sb.append(" and lower(c.name) like lower(:name)");
 			params.put("name", name.concat("%"));
