@@ -1,6 +1,12 @@
 # API Projects
 
-Heare is the place of API projects to test angular http client lesssons. These projects are build by spring boots technology.
+Heare is the place of API projects to test angular http client lessons. These projects are build by spring boots technology. 
+
+### Requirements
+1. JDK 11
+2. Maven
+
+You need to install JDK 11 and Maven to your machine. Add Maven to path and make sure to run mvn command in your machine.
 
 ```
 # Change Directory to Project root folder
