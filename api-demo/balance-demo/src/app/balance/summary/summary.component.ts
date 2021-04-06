@@ -12,4 +12,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  search(form: any) {
+
+  }
 }

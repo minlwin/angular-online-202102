@@ -1,1 +1,36 @@
-<p>search-bar works!</p>
+<form [formGroup]="form" class="form-inline mb-4 mt-4">
+
+    <div *ngIf="!form.value.type" class="form-group mr-2">
+        <select formControlName="type" class="form-control">
+            <option value="">All Types</option>
+            <option *ngFor="let item of types" [value]="item">{{item}}</option>
+        </select>
+    </div>
+
+    <div class="form-group mr-2">
+        <select formControlName="category" class="form-control">
+            <option value="">All Categories</option>
+            <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group mr-2">
+        <input formControlName="from" type="date" class="form-control">
+    </div>
+
+    <div class="form-group mr-2">
+        <input formControlName="to" type="date" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-outline-info">
+            <i class="fa fa-search"></i> Search
+        </button>
+    </div>
+
+    <div *ngIf="form.value.type" class="form-group ml-auto">
+        <button class="btn btn-secondary pull-right">
+            <i class="fa fa-plus"></i> Add New
+        </button>
+    </div>
+</form>

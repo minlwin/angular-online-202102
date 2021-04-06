@@ -17,6 +17,7 @@ export class CategoryComponent {
   constructor(private service: CategoryService) {
     this.target = service.getNewCategory()
     service.balanceTypes().subscribe(data => this.types = data)
+    this.load()
   }
 
   addNew() {
