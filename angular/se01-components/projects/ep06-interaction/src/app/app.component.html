@@ -1,0 +1,43 @@
+<div class="container pt-4">
+
+  <h3>Student Management</h3>
+
+  <div class="clearfix mb-4">
+    <button (click)="addNew()" class="btn btn-outline-primary pull-right">
+      <i class="fa fa-plus"></i> Add Student
+    </button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of students">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.subject}}</td>
+        <td>
+          <a (click)="edit(item)" class="btn-link">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+<div id="editDialog" class="modal fade">
+  <app-student-edit [student]="target" (onSave)="save($event)"></app-student-edit>
+</div>

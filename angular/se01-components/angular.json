@@ -659,6 +659,127 @@
           }
         }
       }
+    },
+    "ep06-interaction": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ep06-interaction",
+      "sourceRoot": "projects/ep06-interaction/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ep06-interaction",
+            "index": "projects/ep06-interaction/src/index.html",
+            "main": "projects/ep06-interaction/src/main.ts",
+            "polyfills": "projects/ep06-interaction/src/polyfills.ts",
+            "tsConfig": "projects/ep06-interaction/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ep06-interaction/src/favicon.ico",
+              "projects/ep06-interaction/src/assets"
+            ],
+            "styles": [
+              "projects/ep06-interaction/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ep06-interaction/src/environments/environment.ts",
+                  "with": "projects/ep06-interaction/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ep06-interaction:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ep06-interaction:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ep06-interaction:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ep06-interaction/src/test.ts",
+            "polyfills": "projects/ep06-interaction/src/polyfills.ts",
+            "tsConfig": "projects/ep06-interaction/tsconfig.spec.json",
+            "karmaConfig": "projects/ep06-interaction/karma.conf.js",
+            "assets": [
+              "projects/ep06-interaction/src/favicon.ico",
+              "projects/ep06-interaction/src/assets"
+            ],
+            "styles": [
+              "projects/ep06-interaction/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ep06-interaction/tsconfig.app.json",
+              "projects/ep06-interaction/tsconfig.spec.json",
+              "projects/ep06-interaction/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ep06-interaction/e2e/protractor.conf.js",
+            "devServerTarget": "ep06-interaction:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ep06-interaction:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ep01-hello"
