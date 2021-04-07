@@ -1,1 +1,72 @@
-<p>edit works!</p>
+<h3>{{balance.value.id ? 'Edit' : 'Add'}} {{balance.value.type}}</h3>
+
+<form [formGroup]="balance" class="row">
+
+    <div class="col-3 form-group">
+        <label>Category</label>
+        <select formControlName="category" [compareWith]="compareCategory" class="form-control">
+            <option value="">Select One</option>
+            <option *ngFor="let item of categories" [ngValue]="item">{{item.name}}</option>
+        </select>
+    </div>
+
+    <div class="col-3 form-group">
+        <label>Use Date</label>
+        <input type="date" formControlName="useDate" class="form-control">
+    </div>
+
+    <div class="col-3 form-group">
+        <label>Total</label>
+        <input readonly type="number" formControlName="total" class="form-control">
+    </div>
+
+</form>
+
+<div class="card mt-2">
+    <div class="card-header">
+        {{balance.value.type}} Details
+    </div>
+
+    <form [formGroup]="form" class="card-body">
+
+        <fieldset formArrayName="details">
+            <fieldset *ngFor="let item of details.controls; index as i; first as f">
+                <div [formGroupName]="i" class="row" *ngIf="!details.controls[i].value.deleted">
+                    <div class="form-group col-3">
+                        <label *ngIf="f">Amount</label>
+                        <input type="number" formControlName="amount" class="form-control">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label *ngIf="f">Reason</label>
+                        <input type="text" formControlName="reason" class="form-control" placeholder="Enter Reason">
+                    </div>
+
+                    <div class="form-group col">
+                        <label *ngIf="f">Reason Details</label>
+                        <div class="input-group">
+                            <input type="text" formControlName="details" class="form-control"
+                                placeholder="Enter Details">
+                            <div class="input-group-append">
+                                <span (click)="removeDetails(i)" class="input-group-text">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </fieldset>
+
+    </form>
+
+    <div class="card-footer">
+        <button (click)="save()" [disabled]="form.invalid" class="btn btn-secondary pull-right">
+            <i class="fa fa-save"></i> Save
+        </button>
+
+        <button (click)="addDetails()" class="btn btn-outline-info mr-2 pull-right">
+            <i class="fa fa-plus"></i> Add Details
+        </button>
+    </div>
+</div>

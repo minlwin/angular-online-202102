@@ -24,4 +24,6 @@ export class BalanceService extends AbstractService {
     updateDetails(id: number, list: any[]) {
         return this.http.put<any>(`${this.api}/details/${id}`, list)
     }
+
 }
+
