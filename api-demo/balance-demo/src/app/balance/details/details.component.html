@@ -1,1 +1,39 @@
-<p>details works!</p>
+<h3>{{balance.type}}</h3>
+
+<div class="row mt-4 mb-4">
+    <div class="col">
+        <label>Category</label>
+        <input type="text" readonly [value]="balance.category.name" class="form-control">
+    </div>
+    <div class="col">
+        <label>Use Date</label>
+        <input type="text" readonly [value]="balance.useDate" class="form-control">
+    </div>
+    <div class="col">
+        <label>Total</label>
+        <input type="text" readonly [value]="balance.total" class="form-control">
+    </div>
+    <div class="col">
+        <a [routerLink]="['/balance/list/', balance.type, balance.id]" class="btn btn-outline-secondary"
+            style="margin-top: 2em;">
+            <i class="fa fa-pencil"></i> Edit {{balance.type}}
+        </a>
+    </div>
+</div>
+
+<table class="card-body table table-striped">
+    <thead>
+        <tr>
+            <th>Reason</th>
+            <th>Reason Details</th>
+            <th class="text-right">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of details">
+            <td>{{item.reason}}</td>
+            <td>{{item.details}}</td>
+            <td class="text-right">{{item.amount}}</td>
+        </tr>
+    </tbody>
+</table>
