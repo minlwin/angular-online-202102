@@ -12,11 +12,13 @@ import { Category, CategoryService } from '../services/category.service';
 export class SearchBarComponent {
 
   form: FormGroup
+  summary = true
 
   @Input()
   set type(data: any) {
     if (data) {
       this.form.patchValue({ type: data })
+      this.summary = false
     }
   }
 

@@ -10,10 +10,10 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent },
   {
     path: 'balance', children: [
+      { path: 'summary/:id', component: DetailsComponent },
       { path: 'summary', component: SummaryComponent },
-      { path: 'list/:type', component: ListComponent },
-      { path: 'details/:id', component: DetailsComponent },
       { path: 'list/:type/:id', component: EditComponent },
+      { path: 'list/:type', component: ListComponent },
     ]
   },
   { path: '', redirectTo: '/balance/summary', pathMatch: 'full' }

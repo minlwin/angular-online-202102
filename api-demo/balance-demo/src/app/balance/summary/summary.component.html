@@ -1,3 +1,33 @@
 <h3>Balance Reports</h3>
 
 <app-search-bar (onSearch)="search($event)"></app-search-bar>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th class="text-right">Income</th>
+            <th class="text-right">Expense</th>
+            <th class="text-right">Total</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.type}}</td>
+            <td>{{item.category.name}}</td>
+            <td>
+                <a [routerLink]="item.id" class="btn-link">{{item.useDate}}</a>
+            </td>
+            <td class="text-right">{{item.income}}</td>
+            <td class="text-right">{{item.expense}}</td>
+            <td class="text-right">{{item.total}}</td>
+            <td>
+                <a [routerLink]="['/balance/list', item.type, item.id]" class="btn-link"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
