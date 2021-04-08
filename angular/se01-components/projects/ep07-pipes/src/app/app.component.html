@@ -1,0 +1,125 @@
+<div class="container pt-4">
+  <h3>Pipes Demo</h3>
+
+  <!-- String Pipes -->
+  <h5>String Pipes</h5>
+  <div class="row">
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Upper Case Pipe</div>
+        <div class="card-body">
+          {{ title | uppercase }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Lower Case Pipe</div>
+        <div [innerText]="title | uppercase | lowercase" class="card-body">
+        </div>
+      </div>
+    </div>
+
+    <div class="col"></div>
+  </div>
+
+  <!-- Percent Pipes -->
+  <h5 class="mt-4">Percent Pipes</h5>
+  <div class="row mt-2">
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Percentage Pipe {{data1}}</div>
+        <div class="card-body">
+          {{ data1 | percent }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Percentage Pipe {{data2}}</div>
+        <div class="card-body">
+          {{ data2 | percent }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Percentage Pipe {{data3}}</div>
+        <div class="card-body">
+          {{ data3 | percent }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="mt-4 mb-2">Currency Pipe</h5>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Currency Pipe</div>
+        <div class="card-body">
+          {{ data1 | currency }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Currency Pipe With Param</div>
+        <div class="card-body">
+          {{ currencyData | currency:'': true: '3.3-3' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Custom Pipe</div>
+        <div class="card-body">
+          {{ currencyData | number:'1.0-0' | mmk }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h5 class="mt-4 mb-2">Decimal Pipe</h5>
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Decimal</div>
+        <div class="card-body">
+          {{ currencyData | number }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Decimal With Format</div>
+        <div class="card-body">
+          {{ currencyData | number:'1.2-3' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Date Format</div>
+        <div class="card-body">
+          {{ currentDate | date:'yyyy-MM-dd' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End of Container -->
+</div>

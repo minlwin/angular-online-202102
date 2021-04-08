@@ -780,6 +780,246 @@
           }
         }
       }
+    },
+    "ep07-pipes": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ep07-pipes",
+      "sourceRoot": "projects/ep07-pipes/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ep07-pipes",
+            "index": "projects/ep07-pipes/src/index.html",
+            "main": "projects/ep07-pipes/src/main.ts",
+            "polyfills": "projects/ep07-pipes/src/polyfills.ts",
+            "tsConfig": "projects/ep07-pipes/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ep07-pipes/src/favicon.ico",
+              "projects/ep07-pipes/src/assets"
+            ],
+            "styles": [
+              "projects/ep07-pipes/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ep07-pipes/src/environments/environment.ts",
+                  "with": "projects/ep07-pipes/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ep07-pipes:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ep07-pipes:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ep07-pipes:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ep07-pipes/src/test.ts",
+            "polyfills": "projects/ep07-pipes/src/polyfills.ts",
+            "tsConfig": "projects/ep07-pipes/tsconfig.spec.json",
+            "karmaConfig": "projects/ep07-pipes/karma.conf.js",
+            "assets": [
+              "projects/ep07-pipes/src/favicon.ico",
+              "projects/ep07-pipes/src/assets"
+            ],
+            "styles": [
+              "projects/ep07-pipes/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ep07-pipes/tsconfig.app.json",
+              "projects/ep07-pipes/tsconfig.spec.json",
+              "projects/ep07-pipes/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ep07-pipes/e2e/protractor.conf.js",
+            "devServerTarget": "ep07-pipes:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ep07-pipes:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "ep08-directives": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ep08-directives",
+      "sourceRoot": "projects/ep08-directives/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ep08-directives",
+            "index": "projects/ep08-directives/src/index.html",
+            "main": "projects/ep08-directives/src/main.ts",
+            "polyfills": "projects/ep08-directives/src/polyfills.ts",
+            "tsConfig": "projects/ep08-directives/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ep08-directives/src/favicon.ico",
+              "projects/ep08-directives/src/assets"
+            ],
+            "styles": [
+              "projects/ep08-directives/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ep08-directives/src/environments/environment.ts",
+                  "with": "projects/ep08-directives/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ep08-directives:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ep08-directives:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ep08-directives:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ep08-directives/src/test.ts",
+            "polyfills": "projects/ep08-directives/src/polyfills.ts",
+            "tsConfig": "projects/ep08-directives/tsconfig.spec.json",
+            "karmaConfig": "projects/ep08-directives/karma.conf.js",
+            "assets": [
+              "projects/ep08-directives/src/favicon.ico",
+              "projects/ep08-directives/src/assets"
+            ],
+            "styles": [
+              "projects/ep08-directives/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ep08-directives/tsconfig.app.json",
+              "projects/ep08-directives/tsconfig.spec.json",
+              "projects/ep08-directives/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ep08-directives/e2e/protractor.conf.js",
+            "devServerTarget": "ep08-directives:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ep08-directives:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "ep01-hello"
