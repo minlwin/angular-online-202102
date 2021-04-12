@@ -1,0 +1,37 @@
+<h3>NgIf Demo</h3>
+
+<div class="row mt-4">
+
+    <div class="col">
+        <div class="card">
+            <div class="card-header">Hidden Property</div>
+            <div class="card-body">
+                <span [hidden]="!show">Using Hidden Property</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-header">d-none Class</div>
+            <div class="card-body">
+                <span [class.d-none]="!show">Using d-none class</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-header">NgIf</div>
+            <div class="card-body">
+                <span *ngIf="show">Using NgIf Directive</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<button (click)="show = !show" class="btn btn-primary mt-4">
+    {{show ? 'Hide' : 'Show'}}
+</button>

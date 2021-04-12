@@ -1,0 +1,19 @@
+<h3>NgSwitch Demo</h3>
+
+<div class="row mt-4 mb-4">
+    <div class="col-2">
+        <select (change)="1" #select class="form-control">
+            <option value="">No Select</option>
+            <option value="opt1">Option One</option>
+            <option value="opt2">Option Two</option>
+            <option value="opt3">Option Three</option>
+        </select>
+    </div>
+
+    <div class="col" [ngSwitch]="select.value">
+        <h3 *ngSwitchCase="'opt1'">This is Option One</h3>
+        <h3 *ngSwitchCase="'opt2'">This is Option Two</h3>
+        <h3 *ngSwitchCase="'opt3'">This is Option Three</h3>
+        <h3 *ngSwitchDefault>This is Default Option</h3>
+    </div>
+</div>

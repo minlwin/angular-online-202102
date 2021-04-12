@@ -1,0 +1,28 @@
+<h3>NgForOf Demo</h3>
+
+<table class="table mt-4 table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Count</th>
+            <th>Value</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Even</th>
+            <th>Odd</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of list; index as i; first as f; 
+            last as l; count as c; even as e; odd as o">
+            <td>{{i}}</td>
+            <td>{{c}}</td>
+            <td>{{item}}</td>
+            <td>{{f}}</td>
+            <td>{{l}}</td>
+            <td>{{e}}</td>
+            <td>{{o}}</td>
+        </tr>
+    </tbody>
+</table>
