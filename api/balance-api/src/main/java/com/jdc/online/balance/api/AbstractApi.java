@@ -21,7 +21,7 @@ public abstract class AbstractApi<T, ID extends Number> {
 		return service.save(data);
 	}
 
-	@PutMapping
+	@PutMapping("{id}")
 	public T update(@PathVariable ID id, @RequestBody T data) {
 		return service.update(id, data);
 	}
