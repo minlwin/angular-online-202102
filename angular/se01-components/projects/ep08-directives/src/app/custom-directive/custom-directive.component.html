@@ -11,3 +11,36 @@
 
     </div>
 </div>
+
+<div class="card mt-4">
+    <div class="card-header">Custom Structural Directive</div>
+
+    <div class="card-body">
+
+        <div class="row">
+            <form [formGroup]="form" class="col-4">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control">
+                    <ng-template [errorMessage]="form.get('name')" errorMessageName="Friend Name">
+                        <span class="p-4 d-block"></span>
+                    </ng-template>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" formControlName="phone" class="form-control">
+                    <span hightLight="yellow" *errorMessage="form.get('phone'); name:'Phone Number'"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Emaiil</label>
+                    <input type="email" formControlName="email" class="form-control">
+                    <span class="pt-2" *errorMessage="form.get('email'); name:'Email'"></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
