@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MemberService } from '../services/member.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Member, MemberService, ROLES } from '../services/member.service';
 
 @Component({
   templateUrl: './hello.component.html',
@@ -8,6 +9,23 @@ import { MemberService } from '../services/member.service';
 })
 export class HelloComponent {
 
-  constructor(private service: MemberService) { }
+  roles = ['', ...ROLES]
+
+  form: FormGroup
+  list: Member[] = []
+
+  constructor(
+    builder: FormBuilder,
+    private service: MemberService
+  ) {
+    this.form = builder.group({
+      role: '',
+      name: ''
+    })
+  }
+
+  search() {
+    this.list = this.service.search(this.form.value)
+  }
 
 }

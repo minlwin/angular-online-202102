@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 export type Role = 'Admin' | 'Editor' | 'Member'
 
+export const ROLES: Role[] = ['Admin', 'Editor', 'Member']
+
 export interface Member {
     readonly id: number
     readonly name: string
@@ -16,19 +18,32 @@ export class MemberService {
     private id = 0
     private resources: { [id: number]: Member } = {}
 
-    getAll(): readonly Member[] {
-        return Object.values(this.resources)
+    search(form: { role: Role | '', name: string }): Member[] {
+        const { role, name } = form
+        return Object.values(this.resources).filter(m => {
+            if (role && m.role != role) {
+                return false
+            }
+
+            if (name && !m.name.toLocaleLowerCase().startsWith(name.toLocaleLowerCase())) {
+                return false
+            }
+            return true
+        })
     }
 
     save(member: Member) {
-        if (member.id) {
+        let id = member.id
+        if (id) {
             // Update
-            this.resources[member.id] = { ...member }
+            this.resources[id] = { ...member }
         } else {
             // Add New
-            const generatedId = ++this.id
-            this.resources[generatedId] = { ...member, id: generatedId }
+            id = ++this.id
+            this.resources[id] = { ...member, id: id }
         }
+
+        return id
     }
 
     findById(id: number) {
