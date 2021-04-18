@@ -21,3 +21,18 @@ export interface Township {
     mmName: string
 }
 
+export interface Locations {
+    regions: ReadonlyArray<string>
+    states: ReadonlyArray<State>
+    districts: ReadonlyArray<District>
+    townships: ReadonlyArray<Township>
+}
+
+export function initialLocations(): Locations {
+    return {
+        regions: [],
+        states: [],
+        districts: [],
+        townships: []
+    }
+}
