@@ -1,9 +1,27 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Locations } from "./location.model";
+import { Location, Locations } from "./location.model";
 
-const locations = createFeatureSelector<Locations>('locations')
+const state = createFeatureSelector<Locations>('locations')
 
-export const regions = createSelector(locations, state => state.districts)
-export const states = createSelector(locations, state => state.states)
-export const districts = createSelector(locations, state => state.districts)
-export const townships = createSelector(locations, state => state.townships)
+export const locations = createSelector(
+    state, state => {
+        let result: Location[] = []
+        switch (state.target) {
+            case 'Region':
+                result = state.regions.map(a => ({ id: a, name: a }))
+                break
+            case 'State':
+                result = state.states.map(a => ({ id: String(a.id), name: a.name }))
+                break
+            case 'District':
+                result = state.districts.map(a => ({ id: String(a.id), name: a.name }))
+                break
+            case 'Township':
+                result = state.townships.map(a => ({ id: String(a.id), name: a.name }))
+        }
+
+        return result
+    }
+)
+
+export const target = createSelector(state, state => state.target)

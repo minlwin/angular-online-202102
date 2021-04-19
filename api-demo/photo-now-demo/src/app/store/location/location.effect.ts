@@ -21,21 +21,21 @@ export class LocationEffect {
 
     loadStates = createEffect(() => this.actions$.pipe(
         ofType(Action.loadState),
-        mergeMap(action => this.http.get<State[]>(`${API}/state`, { params: action.params }).pipe(
+        mergeMap(action => this.http.get<State[]>(`${API}/state`, { params: { region: action.params } }).pipe(
             map(list => ({ type: Action.loadStateSuccess.type, payload: list }))
         ))
     ))
 
     loadDistrict = createEffect(() => this.actions$.pipe(
         ofType(Action.loadDistrict),
-        mergeMap(action => this.http.get<District[]>(`${API}/district`, { params: action.params }).pipe(
+        mergeMap(action => this.http.get<District[]>(`${API}/district`, { params: { state: action.params } }).pipe(
             map(list => ({ type: Action.loadDistrictSuccess.type, payload: list }))
         ))
     ))
 
     loadTownship = createEffect(() => this.actions$.pipe(
         ofType(Action.loadTownship),
-        mergeMap(action => this.http.get<Township[]>(`${API}/township`, { params: action.params }).pipe(
+        mergeMap(action => this.http.get<Township[]>(`${API}/township`, { params: { district: action.params } }).pipe(
             map(list => ({ type: Action.loadDistrictSuccess.type, payload: list }))
         ))
     ))

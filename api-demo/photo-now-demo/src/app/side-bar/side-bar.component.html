@@ -1,0 +1,13 @@
+<h5>
+    <span (click)="back()" class="icon">
+        <i [class.fa-arrow-left]="currentType != 'Region'" [class.fa-home]="currentType == 'Region'"
+            class="fa mr-2"></i>
+    </span>
+    {{type$ | async}}
+</h5>
+
+<ul class="nav nav-pills flex-column">
+    <li *ngFor="let item of locatios$ | async">
+        <a (click)="next(item.id)" class="nav-link">{{item.name}}</a>
+    </li>
+</ul>

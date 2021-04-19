@@ -1,3 +1,5 @@
+export type Type = 'Region' | 'State' | 'District' | 'Township'
+
 export interface State {
     id: number
     region: string
@@ -26,6 +28,7 @@ export interface Locations {
     states: ReadonlyArray<State>
     districts: ReadonlyArray<District>
     townships: ReadonlyArray<Township>
+    target: Type
 }
 
 export function initialLocations(): Locations {
@@ -33,6 +36,13 @@ export function initialLocations(): Locations {
         regions: [],
         states: [],
         districts: [],
-        townships: []
+        townships: [],
+        target: 'Region'
     }
 }
+
+export interface Location {
+    id: string
+    name: string
+}
+

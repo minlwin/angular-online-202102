@@ -12,3 +12,5 @@ export const loadDistrictSuccess = createAction('[Location District] load succes
 
 export const loadTownship = createAction('[Location Township] load', props<{ params: any }>())
 export const loadTownshipSuccess = createAction('[Location Township] load Success', props<{ payload: Township[] }>())
+
+export const backTarget = createAction('[Location Target] back')
