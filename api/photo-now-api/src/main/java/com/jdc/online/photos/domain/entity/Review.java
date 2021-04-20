@@ -1,30 +1,36 @@
 package com.jdc.online.photos.domain.entity;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.LastModifiedDate;
+
 import lombok.Data;
 
 @Data
 @Entity
-public class District implements Serializable{
+public class Review {
 
-	private static final long serialVersionUID = 1L;
+	public enum Type {
+		Like, Unlike
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(nullable = false)
-	private String name;
-	@Column(name="MMNAME")
-	private String mmName;
-	private String capital;
+	private long id;
+	
 	@ManyToOne
-	private State state;
+	private Post post;
+	
+	private Type type;
+	private String nickName;
+	private String reason;
+	
+	@LastModifiedDate
+	private LocalDateTime reviewTime;
 }
