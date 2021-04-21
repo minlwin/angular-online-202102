@@ -1,0 +1,22 @@
+<form class="mt-4 form-inline">
+    <select class="form-control mr-2" *ngIf="!type">
+        <option value="">All Type</option>
+    </select>
+
+    <select class="form-control mr-2">
+        <option value="">All Category</option>
+    </select>
+
+    <input type="date" class="form-control mr-2">
+
+    <input type="date" class="form-control mr-2">
+
+    <button class="btn btn-outline-primary mr-2">
+        <i class="fa fa-search"></i> Search
+    </button>
+
+    <button [routerLink]="[0]" class="btn btn-outline-danger mr-2" *ngIf="type">
+        <i class="fa fa-plus"></i> Add New
+    </button>
+
+</form>

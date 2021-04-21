@@ -1,0 +1,34 @@
+nav {
+    box-shadow: 0px 2px silver;
+}
+
+nav > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu > a {
+    padding: 20px;
+    display: block;
+    color: darkgray;
+    text-decoration: none;
+}
+
+.menu > a:hover {
+    color: black;
+    background-color: silver;
+}
+
+.menu > a.active {
+    color: black;
+}
