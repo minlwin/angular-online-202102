@@ -1,0 +1,25 @@
+<h4><i class="fa fa-tags"></i> Category Management</h4>
+
+<div class="form-inline mt-4">
+    <select class="form-control mr-2">
+        <option value="">All Type</option>
+        <option value="Income">Incomee</option>
+        <option value="Expense">Expense</option>
+    </select>
+
+    <input type="text" class="form-control mr-2" placeholder="Search Name ...">
+
+    <button class="btn btn-outline-primary mr-2">
+        <i class="fa fa-search"></i> Search
+    </button>
+
+    <button (click)="addNew()" class="btn btn-outline-danger ml-auto">
+        <i class="fa fa-plus"></i> Add New
+    </button>
+</div>
+
+<!-- Grid -->
+
+<div id="edit-dialog" class="modal fade">
+    <category-edit></category-edit>
+</div>

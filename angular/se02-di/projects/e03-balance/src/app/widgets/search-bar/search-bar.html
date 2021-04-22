@@ -1,6 +1,8 @@
 <form class="mt-4 form-inline">
     <select class="form-control mr-2" *ngIf="!type">
         <option value="">All Type</option>
+        <option value="Income">Incomee</option>
+        <option value="Expense">Expense</option>
     </select>
 
     <select class="form-control mr-2">
@@ -15,7 +17,7 @@
         <i class="fa fa-search"></i> Search
     </button>
 
-    <button [routerLink]="[0]" class="btn btn-outline-danger mr-2" *ngIf="type">
+    <button [routerLink]="[0]" class="btn btn-outline-danger ml-auto" *ngIf="type">
         <i class="fa fa-plus"></i> Add New
     </button>
 
