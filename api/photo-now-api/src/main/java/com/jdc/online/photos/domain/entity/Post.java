@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,8 @@ public class Post {
 	@CreatedDate
 	private LocalDateTime postDate;
 	
+	@Column(name = "like_react")
 	private int like;
+	@Column(name = "unlike_react")
 	private int unlike;
 }

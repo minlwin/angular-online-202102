@@ -3,7 +3,7 @@ package com.jdc.online.photos.domain;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractService<T, ID extends Number> {
+public abstract class AbstractService<T, ID> {
 	
 	private BaseRepository<T, ID> repo;
 	

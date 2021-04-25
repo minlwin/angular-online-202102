@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jdc.online.photos.domain.AbstractService;
 
-public abstract class AbstractApi<T, ID extends Number> {
+public abstract class AbstractApi<T, ID> {
 	
 	private AbstractService<T, ID> service;
 	
