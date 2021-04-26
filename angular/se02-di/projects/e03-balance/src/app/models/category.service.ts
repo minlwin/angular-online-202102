@@ -1,14 +1,28 @@
 import { Injectable } from "@angular/core";
-import { AbstractControl } from "@angular/forms";
-import { Category, Type } from "./balance.model";
+import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { Category, StorageService, Type } from "./balance.model";
 import { IdGenerator } from "./id.generator";
 
+const STORAGE_KEY = "com.jdc.balance.category"
+
 @Injectable({ providedIn: 'root' })
-export class CategoryService {
+export class CategoryService implements StorageService {
 
     private resource: { [id: number]: Category } = {}
 
     constructor(private idGen: IdGenerator) { }
+
+    loadResource(): void {
+        const data = localStorage.getItem(STORAGE_KEY)
+
+        if (data) {
+            this.resource = JSON.parse(data)
+        }
+    }
+
+    saveResource(): void {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.resource))
+    }
 
     // Home, Income, Expense => Type Or ''
     // Category Management => Type Or '' & Name
@@ -26,10 +40,11 @@ export class CategoryService {
         })
     }
 
-    delete(id: number) {
+    switchDeleteStatus(id: number) {
         const target = this.resource[id]
         if (target) {
-            target.deleted = true
+            target.deleted = !target.deleted
+            this.saveResource()
         }
     }
 
@@ -44,10 +59,22 @@ export class CategoryService {
             data.id = id
             this.resource[id] = data
         }
+
+        this.saveResource()
     }
 
-    validateName(control: AbstractControl) {
+    validateName(control: AbstractControl): ValidationErrors | null {
+        const name = control.value
 
+        for (const cat of Object.values(this.resource)) {
+            if (name === cat.name) {
+                return {
+                    error: 'Name is already exsts!'
+                }
+            }
+        }
+
+        return null
     }
 
     getNewObject(): Category {

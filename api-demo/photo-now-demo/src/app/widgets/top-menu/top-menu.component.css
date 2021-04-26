@@ -1,0 +1,51 @@
+#top-menu {
+    box-shadow: 0px 2px grey;
+}
+
+#top-menu .container {
+    height: 60px;
+}
+
+#top-menu .brand-logo {
+    font-size: 24px;
+}
+
+#top-menu .menu > a,
+#top-menu .menu > a:hover,
+#top-menu .menu > a:active
+ {
+     text-decoration: none;
+     color: green;
+}
+
+#top-menu .menu > a {
+    display: block;
+    padding: 20px;
+}
+
+#top-menu .menu > a.active {
+    color: red;
+    font-weight: bold;
+}
+
+#top-menu .menu > a:hover {
+    background-color: silver;
+}
+
+#top-menu .menu .search {
+    width: 320px;
+    display: flex;
+    align-items: center;
+}
+
+#top-menu .menu .search input {
+    padding-left: 8px;
+    width: 100%;
+}
+
+#top-menu .menu .search input,
+#top-menu .menu .search input:focus
+ {
+    border: none;
+    outline: none;
+ }

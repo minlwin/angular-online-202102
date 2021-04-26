@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../../models/balance.model';
+import { CategoryService } from '../../../models/category.service';
 
 @Component({
   selector: 'category-edit',
@@ -20,14 +21,13 @@ export class EditComponent {
   @Output()
   onSave = new EventEmitter
 
-
-  constructor(builder: FormBuilder) {
+  constructor(builder: FormBuilder, service: CategoryService) {
     this.form = builder.group({
       id: 0,
       type: ['', Validators.required],
-      name: ['', Validators.required],
+      name: ['', [Validators.required, (control: AbstractControl) => service.validateName(control)]],
       deleted: false
-    }, { validators: [] })
+    })
   }
 
   save() {

@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
+import { StorageService } from "./balance.model";
+
+const STORAGE_KEY = "com.jd.balance.ids"
 
 @Injectable({ providedIn: 'root' })
-export class IdGenerator {
+export class IdGenerator implements StorageService {
 
     private ids = {
         category: 0,
@@ -10,6 +13,21 @@ export class IdGenerator {
     }
 
     next(resource: 'category' | 'balance' | 'details'): number {
-        return ++this.ids[resource]
+        const id = ++this.ids[resource]
+        this.saveResource()
+        return id
     }
+
+    loadResource(): void {
+        const data = localStorage.getItem(STORAGE_KEY)
+
+        if (data) {
+            this.ids = JSON.parse(data)
+        }
+    }
+
+    saveResource(): void {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.ids))
+    }
+
 }

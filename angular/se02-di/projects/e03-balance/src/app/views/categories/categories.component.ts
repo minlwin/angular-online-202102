@@ -36,6 +36,11 @@ export class CategoriesComponent {
     $('#edit-dialog').modal('show')
   }
 
+  switchDeleteStatus(id: number) {
+    this.service.switchDeleteStatus(id)
+    this.search()
+  }
+
   save(data: Category) {
     // Save To Model
     this.service.save(data)
