@@ -25,7 +25,13 @@ export class EditComponent {
     this.form = builder.group({
       id: 0,
       type: ['', Validators.required],
-      name: ['', [Validators.required, (control: AbstractControl) => service.validateName(control)]],
+      name: ['', [Validators.required, (control: AbstractControl) => {
+        if (service.isAlreadyExitName(control.value)) {
+          // Error
+          return { error: 'Category name is already registered.' }
+        }
+        return null
+      }]],
       deleted: false
     })
   }

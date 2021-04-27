@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { AbstractControl, ValidationErrors } from "@angular/forms";
 import { Category, StorageService, Type } from "./balance.model";
 import { IdGenerator } from "./id.generator";
 
@@ -63,18 +62,8 @@ export class CategoryService implements StorageService {
         this.saveResource()
     }
 
-    validateName(control: AbstractControl): ValidationErrors | null {
-        const name = control.value
-
-        for (const cat of Object.values(this.resource)) {
-            if (name === cat.name) {
-                return {
-                    error: 'Name is already exsts!'
-                }
-            }
-        }
-
-        return null
+    isAlreadyExitName(name: string): boolean {
+        return Object.values(this.resource).find(category => category.name === name) != undefined
     }
 
     getNewObject(): Category {

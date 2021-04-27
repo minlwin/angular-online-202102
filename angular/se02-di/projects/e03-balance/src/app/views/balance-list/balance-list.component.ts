@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BalanceListComponent {
 
-  type = "Balance List"
+  type = ""
 
   constructor(route: ActivatedRoute) {
     route.params.subscribe(params => {
