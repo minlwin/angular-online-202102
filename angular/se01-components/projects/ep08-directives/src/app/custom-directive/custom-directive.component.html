@@ -44,3 +44,28 @@
         </div>
     </div>
 </div>
+
+<div class="card mt-4">
+    <div class="card-header">Custom For In</div>
+
+    <div class="card-body">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Property Name</th>
+                    <th>Property Value</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *appFor="let name in value; i as index; v as propValue">
+                    <td>{{index}}</td>
+                    <td>{{name}}</td>
+                    <td>{{propValue}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,3 +1,37 @@
 <h4>{{type}}</h4>
 
-<search-bar [type]="type"></search-bar>
+<search-bar [type]="type" (onSearch)="search($event)"></search-bar>
+
+<table class="table table-striped mt-4">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Employee</th>
+            <th>Reason</th>
+            <th>Remark</th>
+            <th class="text-right">Amount</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.id}}</td>
+            <td>
+                <!-- Show Details -->
+                <a [routerLink]="[item.balance.id, 'details']" class="btn-link">{{item.balance.date |
+                    date : 'yyyy-MM-dd'}}</a>
+            </td>
+            <td>{{item.balance.category.name}}</td>
+            <td>{{item.balance.employee}}</td>
+            <td>{{item.item + ' : ' + item.unit}}</td>
+            <td>{{item.remark}}</td>
+            <td class="text-right">
+                <!-- Edit -->
+                <a [routerLink]="[item.balance.id]" class="btn-link">{{item.amount | number}}</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

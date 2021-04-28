@@ -1,1 +1,25 @@
-<p>balance-edit works!</p>
+<h4>{{form.value.id ? 'Edit' : 'Add New'}} {{type}}</h4>
+
+<form [formGroup]="form">
+    <!-- Balance Details -->
+    <div class="form-row">
+        <div class="form-group mr-2">
+            <label>Category</label>
+            <select class="form-control">
+                <option value="">Select One</option>
+                <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+            </select>
+        </div>
+        <div class="form-group mr-2">
+            <label>Date</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="form-group mr-2">
+            <label>Employee</label>
+            <input type="text" class="form-control" placeholder="Enter Employee Name">
+        </div>
+    </div>
+
+
+    <!-- Balance List -->
+</form>

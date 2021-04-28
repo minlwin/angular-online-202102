@@ -20,6 +20,16 @@ export interface Balance {
     employee: string
 }
 
+export interface BalanceVO {
+    id: number
+    date: Date
+    category: Category
+    employee: string
+    income: number
+    expense: number
+    balance: number
+}
+
 export interface BalanceDetails {
     id: number
     balanceId: number
@@ -27,4 +37,23 @@ export interface BalanceDetails {
     unit: number
     amount: number
     remark: string
+}
+
+export interface BalanceDetailsVO {
+    id: number
+    balance: BalanceVO
+    item: string
+    unit: number
+    amount: number
+    remark: string
+}
+
+export interface BalanceDto {
+    balance: Balance
+    details: BalanceDetails[]
+}
+
+export interface BalanceWithDetailsVO {
+    balance: BalanceVO
+    details: BalanceDetailsVO[]
 }

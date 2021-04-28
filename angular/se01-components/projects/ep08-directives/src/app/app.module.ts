@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CustomDirectiveComponent } from './custom-directive/custom-directive.component';
 import { ErrorMesssageDirective } from './custom-directive/error-message';
+import { ForInDirective } from './custom-directive/for-in.directive';
 import { HightLighDirective } from './custom-directive/hight-light.directive';
 import { ForDemoComponent } from './for-demo/for-demo.component';
 import { IfDemoComponent } from './if-demo/if-demo.component';
@@ -19,7 +20,8 @@ import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
     ForDemoComponent,
     CustomDirectiveComponent,
     HightLighDirective,
-    ErrorMesssageDirective
+    ErrorMesssageDirective,
+    ForInDirective
   ],
   imports: [
     BrowserModule,

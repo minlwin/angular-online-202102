@@ -4,6 +4,8 @@ import { IdGenerator } from "./id.generator";
 
 const STORAGE_KEY = "com.jdc.balance.category"
 
+export type CategorySearch = { type: Type | '', name?: string, deleted?: boolean }
+
 @Injectable({ providedIn: 'root' })
 export class CategoryService implements StorageService {
 
@@ -25,7 +27,7 @@ export class CategoryService implements StorageService {
 
     // Home, Income, Expense => Type Or ''
     // Category Management => Type Or '' & Name
-    search(params: { type: Type | '', name?: string, deleted?: boolean }): readonly Category[] {
+    search(params: CategorySearch): readonly Category[] {
         return Object.values(this.resource).filter(cat => {
             if (params.type && cat.type !== params.type) {
                 return false
