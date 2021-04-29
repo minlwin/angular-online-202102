@@ -1,12 +1,35 @@
 import { Injectable } from "@angular/core";
-import { BalanceDto, BalanceVO, StorageService } from "./balance.model";
+import { BalanceVO, BalanceWithDetails, BalanceWithDetailsVO, StorageService } from "./balance.model";
 
 @Injectable({
     providedIn: 'root',
 })
 export class BalanceService implements StorageService {
 
-    findById(id: number): BalanceDto | null {
+    /**
+     * Add New Or Save
+     * @param value Balance With Details
+     * @returns Balance ID
+     */
+    save(value: BalanceWithDetails): number {
+        return 1;
+    }
+
+    /**
+     * Find Balance Data for Details View
+     * @param id Balance ID
+     * @returns Balance With Details for View
+     */
+    findViewById(id: number): BalanceWithDetailsVO | null {
+        return null
+    }
+
+    /**
+     * Find Balance Data For Edit
+     * @param id Balance ID
+     * @returns Balance With Details
+     */
+    findById(id: number): BalanceWithDetails | null {
         return null
     }
 

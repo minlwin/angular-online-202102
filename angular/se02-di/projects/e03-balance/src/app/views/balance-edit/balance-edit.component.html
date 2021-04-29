@@ -2,24 +2,82 @@
 
 <form [formGroup]="form">
     <!-- Balance Details -->
-    <div class="form-row">
-        <div class="form-group mr-2">
+    <div formGroupName="balance" class="form-row">
+        <div class="col form-group mr-2">
             <label>Category</label>
-            <select class="form-control">
+            <select formControlName="categoryId" class="form-control">
                 <option value="">Select One</option>
                 <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
             </select>
         </div>
-        <div class="form-group mr-2">
+
+        <div class="col form-group mr-2">
             <label>Date</label>
-            <input type="date" class="form-control">
+            <input formControlName="useDate" type="date" class="form-control">
         </div>
-        <div class="form-group mr-2">
+
+        <div class="col form-group mr-2">
             <label>Employee</label>
-            <input type="text" class="form-control" placeholder="Enter Employee Name">
+            <input formControlName="employee" type="text" class="form-control" placeholder="Enter Employee Name">
+        </div>
+
+        <div class="col form-group">
+            <label>Total</label>
+            <input formControlName="total" type="text" readonly class="form-control">
         </div>
     </div>
 
 
     <!-- Balance List -->
+    <div class="card">
+        <div class="card-header">Details</div>
+        <div formArrayName="details" class="card-body">
+
+            <div *ngFor="let item of detailsFormArray.controls; index as i; first as f" [formGroupName]="i"
+                class="form-row">
+                <!-- Item -->
+                <div class="col form-group">
+                    <label *ngIf="f">Item</label>
+                    <input type="text" formControlName="item" placeholder="Enter Details Item" class="form-control">
+                </div>
+
+                <!-- Remark -->
+                <div class="col form-group">
+                    <label *ngIf="f">Remark</label>
+                    <input type="text" formControlName="remark" placeholder="Enter Remark" class="form-control">
+                </div>
+
+                <!-- Count -->
+                <div class="col-1 form-group">
+                    <label *ngIf="f">Quantity</label>
+                    <input type="number" formControlName="unit" class="form-control">
+                </div>
+
+                <!-- Amount -->
+                <div class="col-2 form-group">
+                    <label *ngIf="f">Amount</label>
+                    <div class="input-group">
+                        <input type="number" formControlName="amount" class="form-control">
+                        <div class="input-group-append" (click)="removeDetails(i)">
+                            <span class="input-group-text">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-footer text-right">
+            <button (click)="addDetails()" class="btn btn-primary mr-2">
+                <i class="fa fa-plus"></i> Add Details
+            </button>
+
+            <button (click)="save()" [disabled]="form.invalid" class="btn btn-danger">
+                <i class="fa fa-save"></i> Save
+            </button>
+        </div>
+    </div>
+
 </form>

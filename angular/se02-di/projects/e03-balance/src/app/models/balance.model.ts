@@ -48,7 +48,7 @@ export interface BalanceDetailsVO {
     remark: string
 }
 
-export interface BalanceDto {
+export interface BalanceWithDetails {
     balance: Balance
     details: BalanceDetails[]
 }
