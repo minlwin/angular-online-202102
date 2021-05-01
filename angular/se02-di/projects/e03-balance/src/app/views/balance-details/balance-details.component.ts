@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BalanceDetailsVO, BalanceVO, BalanceWithDetailsVO } from '../../models/balance.model';
+import { Balance, BalanceDetails, BalanceWithDetails } from '../../models/balance.model';
 import { BalanceService } from '../../models/balance.service';
 
 @Component({
@@ -10,22 +10,23 @@ import { BalanceService } from '../../models/balance.service';
 })
 export class BalanceDetailsComponent {
 
-  private balanceVO: BalanceWithDetailsVO | null = null
+  private balanceVO: BalanceWithDetails | null = null
 
   constructor(route: ActivatedRoute, service: BalanceService) {
     route.paramMap.subscribe(map => {
       const id = Number(map.get('id'))
       if (id) {
         this.balanceVO = service.findViewById(id)
+        console.log(this.balanceVO)
       }
     })
   }
 
-  get balance(): BalanceVO | null {
+  get balance(): Balance | null {
     return this.balanceVO?.balance || null
   }
 
-  get details(): BalanceDetailsVO[] | null {
+  get details(): BalanceDetails[] | null {
     return this.balanceVO?.details || null
   }
 }

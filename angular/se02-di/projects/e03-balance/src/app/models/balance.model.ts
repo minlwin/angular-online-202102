@@ -14,34 +14,15 @@ export interface Category {
 
 export interface Balance {
     id: number
-    categoryId: number
+    category: any
     useDate: Date
     total: number
     employee: string
 }
 
-export interface BalanceVO {
-    id: number
-    date: Date
-    category: Category
-    employee: string
-    income: number
-    expense: number
-    balance: number
-}
-
 export interface BalanceDetails {
     id: number
-    balanceId: number
-    item: string
-    unit: number
-    amount: number
-    remark: string
-}
-
-export interface BalanceDetailsVO {
-    id: number
-    balance: BalanceVO
+    balance: any
     item: string
     unit: number
     amount: number
@@ -53,7 +34,12 @@ export interface BalanceWithDetails {
     details: BalanceDetails[]
 }
 
-export interface BalanceWithDetailsVO {
-    balance: BalanceVO
-    details: BalanceDetailsVO[]
+export interface BalanceVO {
+    id: number
+    useDate: Date
+    category: Category
+    employee: string
+    total: number
+    balance: number
 }
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BalanceDetailsVO } from '../../models/balance.model';
+import { BalanceDetails } from '../../models/balance.model';
 import { BalanceService } from '../../models/balance.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class BalanceListComponent {
 
   type = ""
 
-  list: readonly BalanceDetailsVO[] = []
+  list: readonly BalanceDetails[] = []
 
   constructor(route: ActivatedRoute, private service: BalanceService) {
     route.params.subscribe(params => {

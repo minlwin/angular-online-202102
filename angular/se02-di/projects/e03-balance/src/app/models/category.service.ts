@@ -45,7 +45,6 @@ export class CategoryService implements StorageService {
         const target = this.resource[id]
         if (target) {
             target.deleted = !target.deleted
-            this.saveResource()
         }
     }
 
@@ -60,8 +59,10 @@ export class CategoryService implements StorageService {
             data.id = id
             this.resource[id] = data
         }
+    }
 
-        this.saveResource()
+    findById(id: number): Category {
+        return this.resource[id]
     }
 
     isAlreadyExitName(name: string): boolean {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { StorageService } from "./balance.model";
 
-const STORAGE_KEY = "com.jd.balance.ids"
+const STORAGE_KEY = "com.jdc.balance.ids"
 
 @Injectable({ providedIn: 'root' })
 export class IdGenerator implements StorageService {

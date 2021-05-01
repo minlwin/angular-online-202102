@@ -32,7 +32,7 @@ export class BalanceEditComponent {
       balance: builder.group({
         id: 0,
         useDate: ['', Validators.required],
-        categoryId: ['', Validators.required],
+        category: ['', Validators.required],
         total: [0, Validators.min(MIN_AMOUNT)],
         employee: ['', Validators.required]
       }),
@@ -83,7 +83,7 @@ export class BalanceEditComponent {
     // Save Form Data
     const id: number = this.serivce.save(this.form.value)
     // Navigate to Details View
-    this.router.navigate(["/balance", this.type, id, 'details '])
+    this.router.navigate(["/balance", this.type, id, 'details'])
   }
 
   addDetails() {
@@ -105,7 +105,7 @@ export class BalanceEditComponent {
   private getDetailsControl(): FormGroup {
     return this.builder.group({
       id: 0,
-      balanceId: 0,
+      balance: 0,
       item: ['', Validators.required],
       unit: [0, Validators.min(1)],
       amount: [0, Validators.min(MIN_AMOUNT)],

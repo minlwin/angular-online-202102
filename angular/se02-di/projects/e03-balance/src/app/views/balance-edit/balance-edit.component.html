@@ -5,7 +5,7 @@
     <div formGroupName="balance" class="form-row">
         <div class="col form-group mr-2">
             <label>Category</label>
-            <select formControlName="categoryId" class="form-control">
+            <select formControlName="category" class="form-control">
                 <option value="">Select One</option>
                 <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
             </select>

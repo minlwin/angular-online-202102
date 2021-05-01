@@ -1,4 +1,4 @@
-import { Component, Inject, InjectionToken, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, InjectionToken, OnDestroy, OnInit } from '@angular/core';
 import { StorageService } from './models/balance.model';
 
 export const STORAGE_SERVICES = new InjectionToken("STORAGE_SERVICES")
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.storageServices.forEach(service => service.loadResource())
   }
 
+  @HostListener('window:beforeunload')
   ngOnDestroy() {
     // Load Data of Services
     this.storageServices.forEach(service => service.saveResource())
