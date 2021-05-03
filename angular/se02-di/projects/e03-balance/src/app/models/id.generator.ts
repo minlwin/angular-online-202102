@@ -1,33 +1,23 @@
 import { Injectable } from "@angular/core";
-import { StorageService } from "./balance.model";
+import { BaseStorage } from "./base.storage";
 
 const STORAGE_KEY = "com.jdc.balance.ids"
 
 @Injectable({ providedIn: 'root' })
-export class IdGenerator implements StorageService {
+export class IdGenerator extends BaseStorage<{ category: number, balance: number, details: number }> {
 
-    private ids = {
-        category: 0,
-        balance: 0,
-        details: 0
+    constructor() {
+        super({
+            category: 0,
+            balance: 0,
+            details: 0
+        }, STORAGE_KEY)
     }
 
     next(resource: 'category' | 'balance' | 'details'): number {
-        const id = ++this.ids[resource]
+        const id = ++this.resource[resource]
         this.saveResource()
         return id
-    }
-
-    loadResource(): void {
-        const data = localStorage.getItem(STORAGE_KEY)
-
-        if (data) {
-            this.ids = JSON.parse(data)
-        }
-    }
-
-    saveResource(): void {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.ids))
     }
 
 }

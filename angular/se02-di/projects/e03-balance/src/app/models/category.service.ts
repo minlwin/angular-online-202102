@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Category, StorageService, Type } from "./balance.model";
+import { Category, Type } from "./balance.model";
+import { BaseStorage } from "./base.storage";
 import { IdGenerator } from "./id.generator";
 
 const STORAGE_KEY = "com.jdc.balance.category"
@@ -7,22 +8,10 @@ const STORAGE_KEY = "com.jdc.balance.category"
 export type CategorySearch = { type: Type | '', name?: string, deleted?: boolean }
 
 @Injectable({ providedIn: 'root' })
-export class CategoryService implements StorageService {
+export class CategoryService extends BaseStorage<{ [id: number]: Category }> {
 
-    private resource: { [id: number]: Category } = {}
-
-    constructor(private idGen: IdGenerator) { }
-
-    loadResource(): void {
-        const data = localStorage.getItem(STORAGE_KEY)
-
-        if (data) {
-            this.resource = JSON.parse(data)
-        }
-    }
-
-    saveResource(): void {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.resource))
+    constructor(private idGen: IdGenerator) {
+        super({}, STORAGE_KEY)
     }
 
     // Home, Income, Expense => Type Or ''
@@ -42,9 +31,9 @@ export class CategoryService implements StorageService {
     }
 
     switchDeleteStatus(id: number) {
-        const target = this.resource[id]
-        if (target) {
-            target.deleted = !target.deleted
+        if (this.resource[id]) {
+            const { deleted, ...rest } = this.resource[id]
+            this.resource[id] = { ...rest, deleted: !deleted }
         }
     }
 
@@ -55,9 +44,9 @@ export class CategoryService implements StorageService {
             this.resource[data.id] = data
         } else {
             // Add New
-            const id = this.idGen.next('category')
-            data.id = id
-            this.resource[id] = data
+            const { id, ...rest } = data
+            const generatedId = this.idGen.next('category')
+            this.resource[generatedId] = { ...rest, id: generatedId }
         }
     }
 

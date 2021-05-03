@@ -3,8 +3,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, STORAGE_SERVICES } from './app.component';
-import { BalanceService } from './models/balance.service';
+import { BalanceResource } from './models/balance.resource';
 import { CategoryService } from './models/category.service';
+import { DetailsResource } from './models/details.resource';
 import { IdGenerator } from './models/id.generator';
 import { BalanceDetailsComponent } from './views/balance-details/balance-details.component';
 import { BalanceEditComponent } from './views/balance-edit/balance-edit.component';
@@ -34,7 +35,8 @@ import { SearchBar } from './widgets/search-bar/search-bar';
   providers: [
     { provide: STORAGE_SERVICES, useExisting: IdGenerator, multi: true },
     { provide: STORAGE_SERVICES, useExisting: CategoryService, multi: true },
-    { provide: STORAGE_SERVICES, useExisting: BalanceService, multi: true },
+    { provide: STORAGE_SERVICES, useExisting: BalanceResource, multi: true },
+    { provide: STORAGE_SERVICES, useExisting: DetailsResource, multi: true },
   ],
   bootstrap: [AppComponent]
 })

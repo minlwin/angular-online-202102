@@ -1,20 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Balance, BalanceDetails, BalanceVO, BalanceWithDetails, StorageService } from "./balance.model";
+import { BalanceDetails, BalanceVO, BalanceWithDetails } from "./balance.model";
+import { BalanceResource } from "./balance.resource";
 import { CategoryService } from "./category.service";
-import { IdGenerator } from "./id.generator";
-
-const B_RESOURCE = 'com.jdc.balance.balance'
-const D_RESOURCE = 'com.jdc.balance.details'
+import { DetailsResource } from "./details.resource";
 
 @Injectable({
     providedIn: 'root',
 })
-export class BalanceService implements StorageService {
+export class BalanceService {
 
-    private bResource: { [id: number]: Balance } = {}
-    private dResource: { [id: number]: BalanceDetails } = {}
-
-    constructor(private ids: IdGenerator, private categories: CategoryService) { }
+    constructor(private balances: BalanceResource, private details: DetailsResource, private categories: CategoryService) { }
 
     /**
      * Add New Or Save
@@ -23,26 +18,14 @@ export class BalanceService implements StorageService {
      */
     save(value: BalanceWithDetails): number {
 
-        const { balance, details } = value
+        // save balance
+        const balanceId = this.balances.save(value.balance);
 
-        // If New Object set id
-        if (balance.id === 0) {
-            balance.id = this.ids.next('balance')
-        }
+        // save details
+        this.details.save(balanceId, value.details)
 
-        // Save Balance
-        this.bResource[balance.id] = { ...balance }
-
-        for (const d of details) {
-            // If New Object
-            if (d.id === 0) {
-                d.id = this.ids.next('details')
-            }
-
-            this.dResource[d.id] = { ...d }
-        }
-
-        return balance.id;
+        // Return Balance ID
+        return balanceId;
     }
 
     /**
@@ -50,10 +33,13 @@ export class BalanceService implements StorageService {
      * @param id Balance ID
      * @returns Balance With Details for View
      */
-    findViewById(id: number): BalanceWithDetails | null {
-        const { balance, details } = this.findById(id) as BalanceWithDetails
-        balance.category = this.categories.findById(balance.category as number)
-        return { balance: balance, details: details.map(a => ({ ...a, balance: balance })) }
+    findViewById(id: number): BalanceWithDetails {
+        const dto = this.findById(id)
+        const { category, ...rest } = dto.balance
+        return {
+            balance: { ...rest, category: this.categories.findById(category) },
+            details: dto.details
+        }
     }
 
     /**
@@ -61,10 +47,10 @@ export class BalanceService implements StorageService {
      * @param id Balance ID
      * @returns Balance With Details
      */
-    findById(id: number): BalanceWithDetails | null {
+    findById(id: number): BalanceWithDetails {
         return {
-            balance: this.bResource[id],
-            details: this.getDetailsByBalanceId(id)
+            balance: this.balances.findById(id),
+            details: this.details.findByBalanceId(id)
         }
     }
 
@@ -84,25 +70,5 @@ export class BalanceService implements StorageService {
         return [];
     }
 
-    private getDetailsByBalanceId(id: number): BalanceDetails[] {
-        return Object.values(this.dResource).filter(d => d.balance === id)
-    }
-
-    loadResource(): void {
-        const bStr = localStorage.getItem(B_RESOURCE)
-        if (bStr) {
-            this.bResource = JSON.parse(bStr)
-        }
-
-        const dStr = localStorage.getItem(D_RESOURCE)
-        if (dStr) {
-            this.dResource = JSON.parse(dStr)
-        }
-    }
-
-    saveResource(): void {
-        localStorage.setItem(B_RESOURCE, JSON.stringify(this.bResource))
-        localStorage.setItem(D_RESOURCE, JSON.stringify(this.dResource))
-    }
 
 }

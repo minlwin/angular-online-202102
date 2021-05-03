@@ -6,27 +6,27 @@ export interface StorageService {
 }
 
 export interface Category {
-    id: number
-    type: Type | ''
-    name: string
-    deleted: boolean
+    readonly id: number
+    readonly type: Type | ''
+    readonly name: string
+    readonly deleted: boolean
 }
 
 export interface Balance {
-    id: number
-    category: any
-    useDate: Date
-    total: number
-    employee: string
+    readonly id: number
+    readonly category: any
+    readonly useDate: Date
+    readonly total: number
+    readonly employee: string
 }
 
 export interface BalanceDetails {
-    id: number
-    balance: any
-    item: string
-    unit: number
-    amount: number
-    remark: string
+    readonly id: number
+    readonly balance: any
+    readonly item: string
+    readonly unit: number
+    readonly amount: number
+    readonly remark: string
 }
 
 export interface BalanceWithDetails {
