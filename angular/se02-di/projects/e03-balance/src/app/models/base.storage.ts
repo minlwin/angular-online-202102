@@ -17,3 +17,15 @@ export abstract class BaseStorage<T> implements StorageService {
     }
 
 }
+
+export abstract class ListStorage<T> extends BaseStorage<{ [id: number]: T }> {
+
+    constructor(resource: { [id: number]: T }, key: string) {
+        super(resource, key)
+    }
+
+    get list(): T[] {
+        return Object.values(this.resource).map(a => ({ ...a }))
+    }
+
+}

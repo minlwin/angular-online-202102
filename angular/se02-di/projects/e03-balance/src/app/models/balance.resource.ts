@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Balance } from "./balance.model";
-import { BaseStorage } from "./base.storage";
+import { ListStorage } from "./base.storage";
 import { IdGenerator } from "./id.generator";
 
 const STORAGE_KEY = 'com.jdc.balance.balance'
@@ -8,7 +8,7 @@ const STORAGE_KEY = 'com.jdc.balance.balance'
 @Injectable({
     providedIn: 'root'
 })
-export class BalanceResource extends BaseStorage<{ [id: number]: Balance }> {
+export class BalanceResource extends ListStorage<Balance> {
 
     findById(id: number): Balance {
         return { ...this.resource[id] }
@@ -29,6 +29,7 @@ export class BalanceResource extends BaseStorage<{ [id: number]: Balance }> {
 
         return balanceId
     }
+
 
     constructor(private ids: IdGenerator) {
         super({}, STORAGE_KEY)

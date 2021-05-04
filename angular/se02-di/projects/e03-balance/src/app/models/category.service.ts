@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Category, Type } from "./balance.model";
-import { BaseStorage } from "./base.storage";
+import { ListStorage } from "./base.storage";
 import { IdGenerator } from "./id.generator";
 
 const STORAGE_KEY = "com.jdc.balance.category"
@@ -8,7 +8,7 @@ const STORAGE_KEY = "com.jdc.balance.category"
 export type CategorySearch = { type: Type | '', name?: string, deleted?: boolean }
 
 @Injectable({ providedIn: 'root' })
-export class CategoryService extends BaseStorage<{ [id: number]: Category }> {
+export class CategoryService extends ListStorage<Category> {
 
     constructor(private idGen: IdGenerator) {
         super({}, STORAGE_KEY)

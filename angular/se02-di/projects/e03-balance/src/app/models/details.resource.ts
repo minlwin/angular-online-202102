@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BalanceDetails } from "./balance.model";
-import { BaseStorage } from "./base.storage";
+import { ListStorage } from "./base.storage";
 import { IdGenerator } from "./id.generator";
 
 const STORAGE_KEY = 'com.jdc.balance.details'
 
 @Injectable({ providedIn: 'root' })
-export class DetailsResource extends BaseStorage<{ [id: number]: BalanceDetails }> {
+export class DetailsResource extends ListStorage<BalanceDetails> {
 
     save(balanceId: number, details: BalanceDetails[]) {
 

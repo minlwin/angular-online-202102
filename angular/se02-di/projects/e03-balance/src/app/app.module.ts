@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,6 +34,7 @@ import { SearchBar } from './widgets/search-bar/search-bar';
     ReactiveFormsModule
   ],
   providers: [
+    DatePipe,
     { provide: STORAGE_SERVICES, useExisting: IdGenerator, multi: true },
     { provide: STORAGE_SERVICES, useExisting: CategoryService, multi: true },
     { provide: STORAGE_SERVICES, useExisting: BalanceResource, multi: true },
