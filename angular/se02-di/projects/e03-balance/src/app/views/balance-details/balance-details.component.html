@@ -1,22 +1,22 @@
-<h4>Balance Details</h4>
+<h4>{{balance?.category.type}} Details</h4>
 
 <!-- Balance -->
 <div class="form-row">
     <div class="col form-group">
         <label>Category</label>
-        <span class="form-control">{{balance?.category}}</span>
+        <span class="form-control">{{balance?.category?.name}}</span>
     </div>
     <div class="col form-group">
         <label>Date</label>
-        <span class="form-control"></span>
+        <span class="form-control">{{balance?.useDate}}</span>
     </div>
     <div class="col form-group">
         <label>Employee</label>
-        <span class="form-control"></span>
+        <span class="form-control">{{balance?.employee}}</span>
     </div>
     <div class="col form-group">
-        <label>Total</label>
-        <span class="form-control"></span>
+        <label class="w-100 text-right">Total</label>
+        <span class="form-control text-right">{{balance?.total | number}} MMK</span>
     </div>
 </div>
 
@@ -26,27 +26,27 @@
         Details
     </div>
     <div class="card-body">
-        <div class="form-row">
+        <div class="form-row" *ngFor="let item of details">
             <div class="col form-group">
                 <label>Item</label>
-                <span class="form-control"></span>
+                <span class="form-control">{{item.item}}</span>
             </div>
             <div class="col form-group">
                 <label>Remark</label>
-                <span class="form-control"></span>
+                <span class="form-control">{{item.remark}}</span>
             </div>
             <div class="col-1 form-group">
                 <label>Quantity</label>
-                <span class="form-control"></span>
+                <span class="form-control text-right">{{item.unit}}</span>
             </div>
             <div class="col-2 form-group">
-                <label>Amount</label>
-                <span class="form-control"></span>
+                <label class="w-100 text-right">Amount</label>
+                <span class="form-control text-right">{{item.amount | number}} MMK</span>
             </div>
         </div>
     </div>
     <div class="card-footer text-right">
-        <button class="btn btn-danger">
+        <button [routerLink]="['/balance', balance?.category.type, balance?.id]" class="btn btn-danger">
             <i class="fa fa-pencil"></i> Edit
         </button>
     </div>

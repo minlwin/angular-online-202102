@@ -17,7 +17,6 @@ export class BalanceDetailsComponent {
       const id = Number(map.get('id'))
       if (id) {
         this.balanceVO = service.findViewById(id)
-        console.log(this.balanceVO)
       }
     })
   }
@@ -26,7 +25,7 @@ export class BalanceDetailsComponent {
     return this.balanceVO?.balance || null
   }
 
-  get details(): BalanceDetails[] | null {
-    return this.balanceVO?.details || null
+  get details(): BalanceDetails[] {
+    return this.balanceVO?.details || []
   }
 }

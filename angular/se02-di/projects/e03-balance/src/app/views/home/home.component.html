@@ -28,8 +28,8 @@
             <td>{{item.category.type}}</td>
             <td>{{item.category.name}}</td>
             <td>{{item.employee}}</td>
-            <td class="text-right">{{item.category.type == 'Income' ? item.total : 0| number}}</td>
-            <td class="text-right">{{item.category.type == 'Expense' ? item.total : 0 | number}}</td>
+            <td class="text-right">{{(item.category.type == 'Income' ? item.total : 0)| number}}</td>
+            <td class="text-right">{{(item.category.type == 'Expense' ? item.total : 0)| number}}</td>
             <td class="text-right">
                 <!-- Edit -->
                 <a [routerLink]='["/balance", item.category.type, item.id]' class="btn-link">{{item.balance |
