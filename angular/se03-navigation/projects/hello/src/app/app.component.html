@@ -1,16 +1,29 @@
 <!-- Container -->
-<div class="container mx-auto">
+<div class="navbar">
 
   <!-- Navbar -->
   <nav>
     <!-- Title -->
-    <span class="text-3xl text-red-700">Hello Navigation</span>
+    <h1>Hello Navigation</h1>
 
     <!-- Menu -->
-    <div>
-      <a>Simple Link</a>
-      <a>Nested Link</a>
+    <div class="menu">
+      <!-- Menu Items -->
+      <a [routerLink]="['/simple']" routerLinkActive="active">Simple Link</a>
+      <div class="dropdown">
+        <a [routerLink]="['/master']" routerLinkActive="active">Master Data</a>
+        <div class="dropdown-menu">
+          <a [routerLink]="['/master/member']" routerLinkActive="active">Members</a>
+          <a [routerLink]="['/master/category']" routerLinkActive="active">Categories</a>
+          <a [routerLink]="['/master/product']" routerLinkActive="active">Products</a>
+        </div>
+      </div>
       <a>Using Parameters</a>
     </div>
   </nav>
+</div>
+
+<!-- Contents -->
+<div class="content">
+  <router-outlet></router-outlet>
 </div>
