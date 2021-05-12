@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components {
+
+    .form input, .form select, .form textarea {
+        @apply block rounded-lg w-full rounded-b-none border-transparent bg-gray-200
+    }
+
+    .form .form-group {
+        @apply mb-4
+    }
+
+    button {
+        @apply border border-gray-500 px-4 py-2 rounded-lg hover:border-transparent hover:bg-gray-500 hover:text-white
+    }
+
+    .content {
+        @apply container mx-auto pt-4
+    }
+
+    .content > * > h1 {
+        @apply text-3xl font-bold text-primary-dark
+    }
+
+    .navbar {
+        @apply bg-primary hover:shadow-lg
+    }
+
+    .navbar nav {
+        @apply container mx-auto flex items-center justify-between
+    }
+
+    .navbar nav > h1 {
+        @apply text-2xl text-secondary-light
+    }
+
+    .navbar nav .menu {
+        @apply flex
+    }
+
+    .navbar nav .menu a {
+        @apply p-4 text-secondary block hover:bg-primary-light
+    }
+
+    .navbar nav .menu .dropdown > .dropdown-menu a {
+        @apply hover:bg-primary
+    }
+
+    .navbar nav .menu a.active {
+        @apply text-white
+    }
+
+    .navbar nav .menu > .dropdown {
+        @apply relative
+    }
+
+    .dropdown > .dropdown-menu {
+        @apply invisible absolute bg-primary-light w-48 shadow-lg
+    }
+
+    .dropdown > .dropdown-menu a {
+        @apply hover:bg-primary
+    } 
+
+    .dropdown:hover > .dropdown-menu {
+        @apply visible 
+    }
+
+    .dropdown:hover > a {
+        @apply bg-primary-light 
+    }
+}
