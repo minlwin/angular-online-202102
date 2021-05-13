@@ -44,7 +44,6 @@
             "main": "projects/forms/src/main.ts",
             "polyfills": "projects/forms/src/polyfills.ts",
             "tsConfig": "projects/forms/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/forms/src/favicon.ico",
               "projects/forms/src/assets"
@@ -56,44 +55,47 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "projects/forms/src/environments/environment.ts",
                   "with": "projects/forms/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "forms:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "forms:build:production"
+            },
+            "development": {
+              "browserTarget": "forms:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -116,31 +118,6 @@
               "projects/forms/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/forms/tsconfig.app.json",
-              "projects/forms/tsconfig.spec.json",
-              "projects/forms/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/forms/e2e/protractor.conf.js",
-            "devServerTarget": "forms:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "forms:serve:production"
-            }
           }
         }
       }
