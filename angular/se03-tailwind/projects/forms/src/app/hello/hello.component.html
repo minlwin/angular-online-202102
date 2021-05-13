@@ -1,5 +1,23 @@
-<h1>Hello</h1>
+<h1>Passing Parameter</h1>
 
-<div>
-    <h1>Hello Navigation</h1>
+<div class="mt-4 grid grid-cols-4 gap-8">
+
+    <div class="item-group">
+
+        <span [routerLink]="['path', 10, 'category', 'hello']" routerLinkActive="active" class="item">Path Params</span>
+
+        <span [routerLink]="['matrix', {data: '100', color: 'blue'}]" routerLinkActive="active" class="item">Matrix
+            Params</span>
+
+        <span [routerLink]="['query']" [queryParams]="{name: 'Thidar', location: 'Yangon'}" routerLinkActive="active"
+            class="item">Query Params</span>
+
+        <span [routerLink]="['matrix', {data: '150', color: 'Red'}]" routerLinkActive="active" class="item">Other Matrix
+            Params</span>
+    </div>
+
+    <div class="col-span-3">
+        <router-outlet></router-outlet>
+    </div>
+
 </div>

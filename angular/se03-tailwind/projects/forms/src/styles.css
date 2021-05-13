@@ -13,7 +13,7 @@
     }
 
     button {
-        @apply border border-gray-500 px-4 py-2 rounded-lg hover:border-transparent hover:bg-gray-500 hover:text-white
+        @apply border border-gray-500 px-4 py-2 rounded-lg hover:border-transparent hover:bg-gray-500 hover:text-white hover:shadow-lg
     }
 
     .content {
@@ -71,4 +71,21 @@
     .dropdown:hover > a {
         @apply bg-primary-light 
     }
+
+    .item-group .item {
+        @apply block p-2 mb-2 border-b hover:bg-purple-100 
+    }
+
+    .item-group .item.active {
+        @apply font-extrabold text-primary-dark
+    }
+
+    .card {
+        @apply p-4 mb-4 border rounded
+    }
+
+    .card h1 {
+        @apply mb-4 text-lg text-primary
+    }
+
 }
