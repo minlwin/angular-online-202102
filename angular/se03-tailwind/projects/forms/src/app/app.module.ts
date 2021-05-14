@@ -8,6 +8,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PathComponent } from './hello/path/path.component';
 import { QueryComponent } from './hello/query/query.component';
 import { MatrixComponent } from './hello/matrix/matrix.component';
+import { ResolveFormComponent } from './resolve/resolve-form/resolve-form.component';
+import { ResolveToComponent } from './resolve/resolve-to/resolve-to.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatrixComponent } from './hello/matrix/matrix.component';
     PathComponent,
     QueryComponent,
     MatrixComponent,
+    ResolveFormComponent,
+    ResolveToComponent,
   ],
   imports: [
     BrowserModule,

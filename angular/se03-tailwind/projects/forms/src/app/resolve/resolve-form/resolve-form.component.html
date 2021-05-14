@@ -1,0 +1,24 @@
+<h1>Resolve From</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list; odd as o" [class.odd]="o">
+            <td>{{item.id}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price | number}} MMK</td>
+            <td>
+                <a [routerLink]="['/resolve', 'to', item.id]">Show Details</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

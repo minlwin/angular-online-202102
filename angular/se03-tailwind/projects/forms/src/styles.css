@@ -88,4 +88,25 @@
         @apply mb-4 text-lg text-primary
     }
 
+    table {
+        @apply w-full mt-4 
+    }
+
+    table thead th, table tbody td {
+        @apply p-2 text-left
+    }
+
+    table thead tr {
+        @apply bg-primary text-white border-b-2 border-secondary 
+    }
+
+    tbody tr.odd {
+        @apply bg-blue-100 
+    }
+
+    tbody tr {
+        @apply hover:bg-secondary-light  hover:text-black
+    }
+
+
 }

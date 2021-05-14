@@ -7,18 +7,12 @@
 
     <!-- Menu -->
     <div class="menu">
-      <a [routerLink]="['/hello']" routerLinkActive="active">Hello</a>
       <a [routerLink]="['/forms']" routerLinkActive="active">Forms</a>
 
-      <div class="dropdown">
-        <a>Dropdown Menu</a>
+      <a [routerLink]="['/hello']" routerLinkActive="active">Passing Params</a>
 
-        <div class="dropdown-menu">
-          <a>Menu One</a>
-          <a>Menu Two</a>
-          <a>Menu Three</a>
-        </div>
-      </div>
+      <a [routerLink]="['/resolve']" routerLinkActive="active">Resolvers</a>
+
 
       <a href="nothibg">Not Found</a>
     </div>
