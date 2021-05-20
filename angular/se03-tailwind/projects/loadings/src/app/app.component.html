@@ -1,0 +1,32 @@
+<div class="navbar">
+  <nav>
+    <h1>Loading Modules</h1>
+
+    <div class="menu">
+
+      <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+      <div class="dropdown">
+        <a>Master Data</a>
+        <div class="dropdown-menu">
+          <a [routerLink]="['/master/role']" routerLinkActive="active">Roles</a>
+          <a [routerLink]="['/master/employee']" routerLinkActive="active">Employees</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a>Transactions</a>
+        <div class="dropdown-menu">
+          <a [routerLink]="['/transaction/invoices']" routerLinkActive="active">Invoices</a>
+          <a [routerLink]="['/transaction/create']" routerLinkActive="active">Create Invoices</a>
+        </div>
+      </div>
+
+      <a [routerLink]="['/settings']" routerLinkActive="active">Settings</a>
+    </div>
+  </nav>
+</div>
+
+<div class="content">
+
+  <router-outlet></router-outlet>
+</div>
