@@ -1,3 +1,17 @@
-<h1>Hello HTTP Client</h1>
+<div class="navbar">
 
-<pre>{{list | async | json}}</pre>
+    <nav>
+        <h1 class="navbar-brand">Student Registration</h1>
+
+        <div class="menu">
+            <a [routerLink]="['/registration']" routerLinkActive="active" class="menu-item">Registrations</a>
+            <a [routerLink]="['/registration/students']" routerLinkActive="active" class="menu-item">Students</a>
+            <a [routerLink]="['/master']" routerLinkActive="active" class="menu-item">Classes</a>
+            <a [routerLink]="['/master/course']" routerLinkActive="active" class="menu-item">Courses</a>
+        </div>
+    </nav>
+</div>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
