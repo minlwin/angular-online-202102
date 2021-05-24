@@ -40,6 +40,33 @@
     }
 
     button {
-        @apply border border-primary-dark bg-primary-dark uppercase text-white px-4 py-2 rounded hover:border-transparent hover:shadow
+        @apply border border-primary-dark  uppercase hover:text-white px-4 py-2 rounded hover:bg-primary-dark hover:shadow
+    }
+
+    .form .form-group input, 
+    .form .form-group select, 
+    .form .form-group textarea {
+        @apply block w-full rounded mt-1
+    }
+
+    .table {
+        @apply w-full mt-4
+    }
+
+    .table tr th,
+    .table tr td {
+        @apply p-2
+    }
+
+    .table thead {
+        @apply bg-primary border-b-2 border-primary-dark
+    }
+
+    .table tbody tr {
+        @apply hover:bg-primary
+    }
+
+    .table tbody .odd {
+        @apply bg-primary-light
     }
 }

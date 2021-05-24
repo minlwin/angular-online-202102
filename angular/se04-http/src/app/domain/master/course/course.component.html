@@ -1,6 +1,66 @@
 <div class="header flex justify-between items-center">
     <h1>Course Management</h1>
-    <button class="flex">
+    <button class="flex" (click)="addNew()">
         <icon-plus class="mr-2"></icon-plus> Add New
     </button>
 </div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Level</th>
+            <th>Name</th>
+            <th>Duration</th>
+            <th>Feees</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.level}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.duration}}</td>
+            <td>{{item.fees}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<app-modal-dialog title="Edit Course">
+    <form [formGroup]="form" class="form w-96">
+
+        <!-- Name -->
+        <div class="form-group mb-2">
+            <label>Course Name</label>
+            <input formControlName="name" type="text" placeholder="Enter Course Name">
+        </div>
+
+        <!-- Level -->
+        <div class="form-group mb-2">
+            <label>Course Level</label>
+            <select formControlName="level">
+                <option value="">Select Level</option>
+                <option value="Basic">Basic</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advance">Advance</option>
+            </select>
+        </div>
+
+        <!-- Duration -->
+        <div class="form-group mb-2">
+            <label>Durations</label>
+            <input formControlName="duration" type="number" placeholder="Enter Duration in Hours.">
+        </div>
+
+        <!-- Fees -->
+        <div class="form-group">
+            <label>Fees</label>
+            <input formControlName="fees" type="number" placeholder="Enter Course Fees">
+        </div>
+
+    </form>
+</app-modal-dialog>

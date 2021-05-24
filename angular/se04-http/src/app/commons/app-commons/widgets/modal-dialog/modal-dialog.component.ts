@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal-dialog',
@@ -6,11 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class ModalDialogComponent implements OnInit {
+export class ModalDialogComponent {
 
-  constructor() { }
+  @Input()
+  title?: string
 
-  ngOnInit(): void {
+  showModal = false
+
+  show() {
+    this.showModal = true
   }
 
+  hide() {
+    this.showModal = false
+  }
+
+  pressOK() {
+
+  }
 }
