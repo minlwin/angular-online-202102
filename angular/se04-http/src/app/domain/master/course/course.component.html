@@ -9,28 +9,32 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Level</th>
-            <th>Name</th>
-            <th>Duration</th>
-            <th>Feees</th>
+            <th class="text-left">Level</th>
+            <th class="text-left">Name</th>
+            <th class="text-right">Duration</th>
+            <th class="text-right">Feees</th>
             <th></th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let item of list">
+        <tr *ngFor="let item of list; odd as o" [class.odd]="o">
             <td>{{item.level}}</td>
             <td>{{item.name}}</td>
-            <td>{{item.duration}}</td>
-            <td>{{item.fees}}</td>
-            <td></td>
+            <td class="text-right">{{item.duration | number}} Hours</td>
+            <td class="text-right">{{item.fees | number}} MMK</td>
+            <td class="text-right">
+                <span (click)="edit(item)" class="flex justify-center text-sm cursor-pointer text-blue-400">
+                    <icon-pencil></icon-pencil>
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>
 
 
 
-<app-modal-dialog title="Edit Course">
+<app-modal-dialog title="Edit Course" [disableButton]="form.invalid" (okListener)="save($event)">
     <form [formGroup]="form" class="form w-96">
 
         <!-- Name -->
@@ -50,16 +54,19 @@
             </select>
         </div>
 
-        <!-- Duration -->
-        <div class="form-group mb-2">
-            <label>Durations</label>
-            <input formControlName="duration" type="number" placeholder="Enter Duration in Hours.">
-        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Duration -->
+            <div class="form-group mb-2">
+                <label>Durations</label>
+                <input formControlName="duration" type="number" placeholder="Enter Duration in Hours.">
+            </div>
 
-        <!-- Fees -->
-        <div class="form-group">
-            <label>Fees</label>
-            <input formControlName="fees" type="number" placeholder="Enter Course Fees">
+            <!-- Fees -->
+            <div class="form-group">
+                <label>Fees</label>
+                <input formControlName="fees" type="number" placeholder="Enter Course Fees">
+            </div>
+
         </div>
 
     </form>

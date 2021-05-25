@@ -19,7 +19,7 @@
                 <button type="button" (click)="hide()" class="mr-2">
                     Close
                 </button>
-                <button (click)="pressOK()">
+                <button [disabled]="disableButton" (click)="pressOK()">
                     Save
                 </button>
             </div>

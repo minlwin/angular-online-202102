@@ -19,6 +19,7 @@ export class CourseComponent {
 
   constructor(builder: FormBuilder, private service: CourseService) {
     this.form = builder.group({
+      objectId: null,
       name: ['', Validators.required],
       level: ['', Validators.required],
       duration: ['', Validators.min(10)],
@@ -28,12 +29,25 @@ export class CourseComponent {
     service.search().subscribe(data => this.list = data)
   }
 
-
   addNew() {
+    this.form.reset()
+    this.form.patchValue({
+      level: '',
+    })
+    this.dialog?.show()
+  }
+
+  edit(data: any) {
+    this.form.patchValue(data)
     this.dialog?.show()
   }
 
   save(ok: any) {
-
+    if (ok) {
+      this.service.save(this.form.value).subscribe(data => {
+        this.list = data
+        this.dialog?.hide()
+      })
+    }
   }
 }

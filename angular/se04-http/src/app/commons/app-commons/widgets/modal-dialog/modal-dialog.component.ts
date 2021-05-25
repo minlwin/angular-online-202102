@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal-dialog',
@@ -11,6 +11,12 @@ export class ModalDialogComponent {
   @Input()
   title?: string
 
+  @Input()
+  disableButton: boolean = true
+
+  @Output()
+  okListener = new EventEmitter
+
   showModal = false
 
   show() {
@@ -22,6 +28,6 @@ export class ModalDialogComponent {
   }
 
   pressOK() {
-
+    this.okListener.emit(true)
   }
 }
