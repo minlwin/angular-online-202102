@@ -49,6 +49,12 @@
         @apply block w-full rounded mt-1
     }
 
+    .inline-form input, 
+    .inline-form select, 
+    .inline-form textarea {
+        @apply rounded inline-block
+    }
+
     .table {
         @apply w-full mt-4
     }

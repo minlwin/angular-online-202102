@@ -1,1 +1,95 @@
-<p>class works!</p>
+<!-- Title -->
+<div class="header">
+    <h1>Class Management</h1>
+</div>
+
+<!-- Search Bar -->
+<form [formGroup]="searchForm" class="inline-form flex">
+    <!-- Course -->
+    <select formControlName="course" class="mr-2">
+        <option value="">Search Course</option>
+        <option *ngFor="let item of courses" [value]="item.objectId">{{item.name}}</option>
+    </select>
+
+    <!-- Teacher -->
+    <input formControlName="teacher" class="mr-2" type="text" placeholder="Teacher">
+
+    <!-- Date From -->
+    <input formControlName="from" class="mr-2" type="date">
+
+    <!-- Date To -->
+    <input formControlName="to" class="mr-4" type="date">
+
+    <button (click)="search()" class="flex mr-2">
+        <icon-search></icon-search>
+        Search
+    </button>
+    <button (click)="addNew()" class="flex">
+        <icon-plus></icon-plus>
+        Add New
+    </button>
+</form>
+
+<!-- Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-left">Course</th>
+            <th class="text-left">Level</th>
+            <th class="text-left">Start Date</th>
+            <th class="text-left">Days</th>
+            <th class="text-left">Teacher</th>
+            <th class="text-right">Fees</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of list">
+            <td>{{item.course.name}}</td>
+            <td>{{item.course.level}}</td>
+            <td>{{item.startDate | date : 'MM/dd yyyy'}}</td>
+            <td>{{item.days | day}}</td>
+            <td>{{item.teacher}}</td>
+            <td class="text-right">{{item.course.fees | number}} MMK</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Edit Dilog -->
+<app-modal-dialog title="Edit Class" [disableButton]="editForm.invalid" (okListener)="save($event)">
+
+    <form [formGroup]="editForm" class="form" style="width: 680px;">
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="form-group mb-2">
+                <label>Course</label>
+                <select formControlName="course">
+                    <option value="">Select Course</option>
+                    <option *ngFor="let item of courses" [value]="item.objectId">{{item.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-2">
+                <label>Start Date</label>
+                <input formControlName="startDate" type="date" placeholder="Enter Start Date">
+            </div>
+
+        </div>
+
+        <div class="form-group mb-2">
+            <label>Teacher</label>
+            <input formControlName="teacher" type="text" placeholder="Enter Teacher">
+        </div>
+
+
+        <div>
+            <label>Days</label>
+            <div formArrayName="days">
+                <label *ngFor="let item of days.controls;index as i" [for]="i" class="mr-3">
+                    <input [id]="i" type="checkbox" [formControlName]="i" class="mr-1">
+                    {{i | day}}
+                </label>
+            </div>
+        </div>
+
+    </form>
+</app-modal-dialog>

@@ -14,11 +14,11 @@ export class ApiClient {
         return this.http.put(`${this.api}/${data.objectId}`, data)
     }
 
-    search(): Observable<any> {
-        return this.http.get(this.api)
+    search(params: any = {}): Observable<any> {
+        return this.http.get(this.api, { params: params })
     }
 
-    findOne(id: string): Observable<any> {
-        return this.http.get(`${this.api}/${id}`)
+    findOne(id: string, params: any = {}): Observable<any> {
+        return this.http.get(`${this.api}/${id}`, { params: params })
     }
 }
