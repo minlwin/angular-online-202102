@@ -40,16 +40,22 @@
             <th class="text-left">Days</th>
             <th class="text-left">Teacher</th>
             <th class="text-right">Fees</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of list">
+        <tr *ngFor="let item of list; odd as o" [class.odd]="o">
             <td>{{item.course.name}}</td>
             <td>{{item.course.level}}</td>
             <td>{{item.startDate | date : 'MM/dd yyyy'}}</td>
             <td>{{item.days | day}}</td>
             <td>{{item.teacher}}</td>
             <td class="text-right">{{item.course.fees | number}} MMK</td>
+            <td class="text-center">
+                <span (click)="edit(item)">
+                    <icon-pencil class="text-center block w-full"></icon-pencil>
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>

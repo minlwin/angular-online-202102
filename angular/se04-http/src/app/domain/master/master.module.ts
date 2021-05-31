@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppCommonsModule } from 'src/app/commons/app-commons/app-commons.module';
@@ -18,6 +18,9 @@ import { MasterRoutingModule } from './master-routing.module';
     MasterRoutingModule,
     AppCommonsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class MasterModule { }

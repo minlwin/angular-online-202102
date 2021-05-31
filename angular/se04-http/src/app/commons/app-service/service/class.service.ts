@@ -23,7 +23,48 @@ export class ClassService {
     }
 
     search(form: any): Observable<Class[]> {
-        const params: any = { include: 'course' }
+        const where: any = {}
+
+        if (form.teacher) {
+            where['teacher'] = { "$text": { "$search": { "$term": form.teacher } } }
+        }
+
+        if (form.course) {
+            where['course'] = {
+                "__type": "Pointer",
+                "className": "Course",
+                "objectId": form.course
+            }
+        }
+
+        const startDate: any[] = []
+        if (form.from) {
+            startDate.push({
+                'startDate': {
+                    '$gte': {
+                        "__type": "Date",
+                        "iso": new Date(form.from)
+                    }
+                }
+            })
+        }
+
+        if (form.to) {
+            startDate.push({
+                'startDate': {
+                    '$lte': {
+                        "__type": "Date",
+                        "iso": new Date(form.to)
+                    }
+                }
+            })
+        }
+
+        if (startDate.length > 0) {
+            where['$and'] = startDate
+        }
+
+        const params: any = { include: 'course', where: JSON.stringify(where) }
         return this.client.search(params).pipe(
             map(data => data.results),
             map(data => {

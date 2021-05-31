@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/app-commons/widgets/modal-dialog/modal-dialog.component';
@@ -24,7 +25,8 @@ export class ClassComponent implements OnInit {
   constructor(
     builder: FormBuilder,
     private classService: ClassService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private datePipe: DatePipe
   ) {
     this.searchForm = builder.group({
       course: '',
@@ -54,11 +56,24 @@ export class ClassComponent implements OnInit {
   }
 
   addNew() {
+    this.editForm.patchValue({
+      objectId: null,
+      teacher: '',
+      course: '',
+      startDate: '',
+      days: [
+        false, false, false, false, false, false, false
+      ]
+    })
     this.dialog?.show()
   }
 
-  edit() {
-
+  edit(data: any) {
+    const { course, startDate, ...others } = data
+    const date = new Date(startDate)
+    const target = { ...others, course: course.objectId, startDate: this.datePipe.transform(date, 'yyyy-MM-dd') }
+    this.editForm.patchValue(target)
+    this.dialog?.show()
   }
 
   save(valid: any) {
@@ -66,6 +81,7 @@ export class ClassComponent implements OnInit {
       this.classService.save(this.editForm.value).subscribe(result => {
         if (result) {
           this.search()
+          this.dialog?.hide()
         }
       })
     }
