@@ -1,0 +1,53 @@
+<div class="row">
+
+    <div class="col-8">
+
+        <!-- Some Contents -->
+
+    </div>
+
+    <div class="col">
+
+        <div class="card mt-5 shadow">
+            <div class="card-header">
+                <h5>Sign In</h5>
+            </div>
+
+            <div class="card-body">
+
+                <form [formGroup]="form">
+
+                    <div>
+                        <label class="form-label">Login Id</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi-person-circle"></i>
+                            </span>
+                            <input formControlName="username" type="text" class="form-control"
+                                placeholder="Enter Login Id">
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi-key"></i>
+                            </span>
+                            <input formControlName="password" type="password" class="form-control"
+                                placeholder="Enter Password">
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button (click)="signIn()" [disabled]="form.invalid" class="btn btn-outline-success">
+                            <i class="bi-door-open-fill"></i> Sign In
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

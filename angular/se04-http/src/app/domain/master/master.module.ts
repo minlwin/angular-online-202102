@@ -5,13 +5,15 @@ import { AppCommonsModule } from 'src/app/commons/app-commons/app-commons.module
 import { ClassComponent } from './class/class.component';
 import { CourseComponent } from './course/course.component';
 import { MasterRoutingModule } from './master-routing.module';
+import { TeacherComponent } from './teacher/teacher.component';
 
 
 
 @NgModule({
   declarations: [
     CourseComponent,
-    ClassComponent
+    ClassComponent,
+    TeacherComponent,
   ],
   imports: [
     CommonModule,

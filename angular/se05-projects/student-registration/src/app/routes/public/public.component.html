@@ -1,0 +1,21 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+
+    <div class="container">
+        <a [routerLink]="['/public']" routerLinkActive="active" class="navbar-brand">
+            <i class="bi-book-half"></i> <span class="mx-2">Student Registration</span>
+        </a>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a [routerLink]="['/public/sign-in']" routerLinkActive="active" class="nav-link"><i
+                        class="bi-door-open"></i> Sign In</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Content -->
+<div class="container py-2">
+    <router-outlet></router-outlet>
+</div>
