@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
+import { ForbiddenComponent } from './views/forbidden/forbidden.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    SignInComponent
+    SignInComponent,
+    ForbiddenComponent
   ],
   imports: [
     CommonModule,
