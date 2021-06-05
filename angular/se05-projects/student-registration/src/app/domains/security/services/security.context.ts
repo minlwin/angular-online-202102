@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { switchMap, tap } from 'rxjs/operators';
 import { Role } from "src/app/commons/commons/model/role.model";
 import { User } from "src/app/commons/commons/model/user.model";
@@ -12,7 +13,7 @@ export class SecurityContext {
     role?: Role
     sessionToken?: string
 
-    constructor(private users: UserService, private roles: RoleService) { }
+    constructor(private users: UserService, private roles: RoleService, private router: Router) { }
 
     get authority(): string {
         return this.role?.name || 'Anonymous'
@@ -35,6 +36,15 @@ export class SecurityContext {
             }
         }
         return false;
+    }
+
+    canRoute(...roles: string[]) {
+        if (this.isInRole(...roles)) {
+            return true
+        }
+        // Navigate To Forbidden
+        this.router.navigate(['public', 'forbidden'])
+        return false
     }
 
     clear() {

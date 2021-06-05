@@ -12,13 +12,13 @@ export class TeacherGuard implements CanActivate, CanActivateChild {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-    return this.security.isInRole('Admin', 'Teacher');
+    return this.security.canRoute('Admin', 'Teacher');
   }
 
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-    return this.security.isInRole('Admin', 'Teacher');
+    return this.security.canRoute('Admin', 'Teacher');
   }
 
 

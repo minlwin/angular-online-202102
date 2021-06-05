@@ -1,0 +1,40 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">{{form.value.objectId ? 'Edit' : 'Add'}} Teacher</div>
+
+        <div class="modal-body">
+            <form [formGroup]="form">
+
+                <div class="mb-2">
+                    <label class="form-label">Name</label>
+                    <input formControlName="name" type="text" class="form-control" placeholder="Enter Name">
+                </div>
+
+                <fieldset formGroupName="user">
+                    <div class="mb-2">
+                        <label class="form-label">Login ID</label>
+                        <input formControlName="username" type="text" class="form-control" placeholder="Enter Login ID">
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">Email</label>
+                        <input formControlName="email" type="email" class="form-control" placeholder="Enter Email">
+                    </div>
+                </fieldset>
+
+
+                <div class="mb-2">
+                    <label class="form-label">Phone</label>
+                    <input formControlName="phone" type="tel" class="form-control" placeholder="Enter Phone">
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="form.invalid" (click)="save()" class="btn btn-danger">
+                <i class="bi-save"></i> Save
+            </button>
+        </div>
+    </div>
+</div>

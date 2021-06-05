@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { User } from "../commons/model/user.model";
 import { ApiClient } from "./client/api-client";
 
@@ -19,5 +20,11 @@ export class UserService {
 
     getUser(id: string): Observable<User> {
         return this.client.getOne(id)
+    }
+
+    create(user: any): Observable<string> {
+        return this.client.post(user).pipe(
+            map(resp => resp.objectId)
+        )
     }
 }

@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: '', component: TeacherComponent, children: [
       { path: 'home', component: HomeComponent },
-      { path: 'teachers', component: TeachersComponent, canActivate: [AdminGuard] },
+      {
+        path: 'teachers',
+        component: TeachersComponent,
+        canActivate: [AdminGuard]
+      },
       { path: 'courses', component: CoursesComponent },
       { path: 'classes', component: ClassesComponent },
       { path: '', redirectTo: '/teacher/home', pathMatch: 'full' }

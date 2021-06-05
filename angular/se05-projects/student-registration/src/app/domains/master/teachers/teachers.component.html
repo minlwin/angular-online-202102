@@ -1,1 +1,61 @@
-<p>teachers works!</p>
+<h3><i class="bi-person-check"></i> Teachers Management</h3>
+
+<div class="row mt-4">
+
+    <div class="col">
+
+        <!-- List -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-3">
+
+        <!-- Search -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi-search"></i> Search
+            </div>
+            <div class="card-body">
+
+                <form>
+                    <div>
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" placeholder="Search Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" placeholder="Search Phone">
+                    </div>
+                </form>
+
+            </div>
+            <div class="card-footer">
+                <button (click)="search()" class="btn btn-primary d-block mb-2 w-100">Search</button>
+                <button (click)="addNew()" class="btn btn-danger d-block w-100">
+                    Add New
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" id="editDialog">
+    <app-teacher-edit [data]="target" (onSave)="save($event)"></app-teacher-edit>
+</div>

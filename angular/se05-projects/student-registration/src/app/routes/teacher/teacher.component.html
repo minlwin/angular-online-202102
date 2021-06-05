@@ -1,19 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a [routerLink]="['/teacher/home']" routerLinkActive="active" class="navbar-brand">JDC Home</a>
+        <a [routerLink]="['/teacher/home']" routerLinkActive="active" class="navbar-brand">
+            <i class="bi-house"></i> JDC Home
+        </a>
 
         <ul class="navbar-nav">
             <li *ngIf="admin" class="nav-item">
-                <a [routerLink]="['/teacher/teachers']" routerLinkActive="active" class="nav-link">Teachers</a>
+                <a [routerLink]="['/teacher/teachers']" routerLinkActive="active" class="nav-link">
+                    <i class="bi-person-check"></i> Teachers
+                </a>
             </li>
             <li class="nav-item">
-                <a [routerLink]="['/teacher/courses']" routerLinkActive="active" class="nav-link">Courses</a>
+                <a [routerLink]="['/teacher/courses']" routerLinkActive="active" class="nav-link">
+                    <i class="bi-book-half"></i> Courses
+                </a>
             </li>
             <li class="nav-item">
-                <a [routerLink]="['/teacher/classes']" routerLinkActive="active" class="nav-link">Classes</a>
+                <a [routerLink]="['/teacher/classes']" routerLinkActive="active" class="nav-link">
+                    <i class="bi-alarm"></i> Classes
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" (click)="signOut()">Sign Out</a>
+                <a class="nav-link" (click)="signOut()">
+                    <i class="bi-door-closed"></i> Sign Out
+                </a>
             </li>
         </ul>
     </div>
