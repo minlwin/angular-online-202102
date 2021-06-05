@@ -20,16 +20,12 @@ export class SignInService {
 
     signIn(form: any) {
         return this.client.get(form).pipe(
-            tap(resp => {
-                this.security.sessionToken = resp.sessionToken
-            }),
-            switchMap(resp => this.userService.getCurrentUser().pipe(
-                tap(user => this.security.user = user)
-            )),
-            switchMap(user => this.roleService.getUserRole(user.objectId!).pipe(
-                tap(role => this.security.role = role),
-                map(role => role.name)
-            ))
+            tap(resp => this.security.sessionToken = resp.sessionToken),
+            switchMap(resp => this.userService.getCurrentUser()),
+            tap(user => this.security.user = user),
+            switchMap(user => this.roleService.getUserRole(user.objectId!)),
+            tap(role => this.security.role = role),
+            map(role => role.name)
         )
     }
 }

@@ -1,1 +1,24 @@
-<p>teacher works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a [routerLink]="['/teacher/home']" routerLinkActive="active" class="navbar-brand">JDC Home</a>
+
+        <ul class="navbar-nav">
+            <li *ngIf="admin" class="nav-item">
+                <a [routerLink]="['/teacher/teachers']" routerLinkActive="active" class="nav-link">Teachers</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/teacher/courses']" routerLinkActive="active" class="nav-link">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/teacher/classes']" routerLinkActive="active" class="nav-link">Classes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="signOut()">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container pt-4">
+    <router-outlet></router-outlet>
+</div>
