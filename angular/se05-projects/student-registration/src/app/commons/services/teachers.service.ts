@@ -5,6 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Pointer } from "../commons/model/pointer.model";
 import { Teacher } from "../commons/model/teacher.model";
 import { ApiClient } from "./client/api-client";
+import { RoleService } from "./roles.service";
 import { UserService } from "./users.service";
 
 @Injectable({ providedIn: 'any' })
@@ -12,7 +13,7 @@ export class TeachersService {
 
     private client: ApiClient
 
-    constructor(http: HttpClient, private users: UserService) {
+    constructor(http: HttpClient, private users: UserService, private roles: RoleService) {
         this.client = new ApiClient(http, 'classes/Teacher')
     }
 
@@ -45,6 +46,7 @@ export class TeachersService {
     private create(data: Teacher): Observable<string> {
         const { user, ...others } = data
         return this.users.create(user).pipe(
+            switchMap(userId => this.roles.addUserToRole('Teacher', userId)),
             switchMap(userId => this.client.post({ ...others, user: new Pointer('_User', userId) })),
             map(resp => resp.objectId)
         )

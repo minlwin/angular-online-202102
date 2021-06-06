@@ -23,7 +23,7 @@ export class UserService {
     }
 
     create(user: any): Observable<string> {
-        return this.client.post(user).pipe(
+        return this.client.post({ ...user, password: user.username }).pipe(
             map(resp => resp.objectId)
         )
     }

@@ -19,6 +19,17 @@
 
             <tbody>
 
+                <tr *ngFor="let item of list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.user.email}}</td>
+                    <td>{{item.createdAt | date : 'yyyy:MM:dd HH:mm'}}</td>
+                    <td>{{item.updatedAt | date : 'yyyy:MM:dd HH:mm'}}</td>
+                    <td>
+                        <span (click)="edit(item)"><i class="bi-pencil"></i></span>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
 

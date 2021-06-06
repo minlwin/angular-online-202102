@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, switchMap } from "rxjs/operators";
+import { Pointer } from "../commons/model/pointer.model";
 import { Role } from "../commons/model/role.model";
 import { ApiClient } from "./client/api-client";
 
@@ -14,16 +15,33 @@ export class RoleService {
         this.client = new ApiClient(http, 'roles')
     }
 
-    getUserRole(userId: string): Observable<Role> {
-        const userCriteria = {
-            users: {
-                __type: 'Pointer',
-                className: '_User',
-                objectId: userId
-            }
-        }
+    getRoles(): Observable<Role[]> {
+        return this.client.get().pipe(map(resp => resp.results))
+    }
 
-        return this.client.get({ where: JSON.stringify(userCriteria) }).pipe(
+    getRole(name: string): Observable<Role> {
+        return this.getRoles().pipe(
+            map(roles => roles.filter(role => role.name === name).pop() as Role)
+        )
+    }
+
+    addUserToRole(name: string, userId: string) {
+        return this.getRole(name).pipe(
+            switchMap(role => this.client.put(role.objectId!, {
+                users: {
+                    "__op": "AddRelation",
+                    "objects": [
+                        new Pointer('_User', userId)
+                    ]
+                }
+            })),
+            map(_ => userId)
+        )
+    }
+
+    getUserRole(userId: string): Observable<Role> {
+
+        return this.client.get({ where: JSON.stringify({ users: new Pointer('_User', userId) }) }).pipe(
             map(resp => resp.results as Role[]),
             map(roles => roles[0])
         )

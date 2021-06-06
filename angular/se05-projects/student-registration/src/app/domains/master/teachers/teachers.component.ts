@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Teacher } from 'src/app/commons/commons/model/teacher.model';
 import { TeachersService } from 'src/app/commons/services/teachers.service';
 
 declare var bootstrap: any
@@ -12,7 +13,7 @@ declare var bootstrap: any
 export class TeachersComponent implements AfterViewInit {
 
   form: FormGroup
-  list: any[] = []
+  list: Teacher[] = []
 
   target: any = {}
   modal: any
