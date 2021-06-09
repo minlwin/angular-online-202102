@@ -5,13 +5,15 @@ import { ClassesComponent } from './classes/classes.component';
 import { CoursesComponent } from './courses/courses.component';
 import { TeacherEditComponent } from './teachers/teacher-edit/teacher-edit.component';
 import { TeachersComponent } from './teachers/teachers.component';
+import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 
 @NgModule({
   declarations: [
     TeachersComponent,
     CoursesComponent,
     ClassesComponent,
-    TeacherEditComponent
+    TeacherEditComponent,
+    CourseEditComponent
   ],
   imports: [
     CommonModule,

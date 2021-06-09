@@ -10,7 +10,7 @@
                     <input formControlName="name" type="text" class="form-control" placeholder="Enter Name">
                 </div>
 
-                <fieldset formGroupName="user">
+                <fieldset *ngIf="!form.value.objectId" formGroupName="user">
                     <div class="mb-2">
                         <label class="form-label">Login ID</label>
                         <input formControlName="username" type="text" class="form-control" placeholder="Enter Login ID">

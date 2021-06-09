@@ -22,7 +22,7 @@
                 <tr *ngFor="let item of list">
                     <td>{{item.name}}</td>
                     <td>{{item.phone}}</td>
-                    <td>{{item.user.email}}</td>
+                    <td>{{item.email}}</td>
                     <td>{{item.createdAt | date : 'yyyy:MM:dd HH:mm'}}</td>
                     <td>{{item.updatedAt | date : 'yyyy:MM:dd HH:mm'}}</td>
                     <td>
@@ -44,14 +44,14 @@
             </div>
             <div class="card-body">
 
-                <form>
+                <form [formGroup]="form">
                     <div>
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" placeholder="Search Name">
+                        <input formControlName="name" type="text" class="form-control" placeholder="Search Name">
                     </div>
                     <div class="mt-2">
                         <label class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" placeholder="Search Phone">
+                        <input formControlName="phone" type="tel" class="form-control" placeholder="Search Phone">
                     </div>
                 </form>
 

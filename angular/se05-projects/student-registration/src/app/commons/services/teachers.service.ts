@@ -30,11 +30,11 @@ export class TeachersService {
         const where: any = {}
 
         if (form.name) {
-            where['name'] = { '$regex': `^n${form.name}` }
+            where['name'] = { '$regex': `^${form.name}` }
         }
 
         if (form.phone) {
-            where['phone'] = { '$regex': `^n${form.phone}` }
+            where['phone'] = { '$regex': `^${form.phone}` }
         }
 
         return this.client.get({ where: JSON.stringify(where), include: 'user' }).pipe(
@@ -45,9 +45,10 @@ export class TeachersService {
 
     private create(data: Teacher): Observable<string> {
         const { user, ...others } = data
+
         return this.users.create(user).pipe(
             switchMap(userId => this.roles.addUserToRole('Teacher', userId)),
-            switchMap(userId => this.client.post({ ...others, user: new Pointer('_User', userId) })),
+            switchMap(userId => this.client.post({ ...others, email: user.email, user: new Pointer('_User', userId) })),
             map(resp => resp.objectId)
         )
     }

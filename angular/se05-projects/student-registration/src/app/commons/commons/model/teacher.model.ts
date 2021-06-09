@@ -5,4 +5,5 @@ export interface Teacher extends Entity {
     name: string
     phone: string
     user: User
+    email?: string
 }

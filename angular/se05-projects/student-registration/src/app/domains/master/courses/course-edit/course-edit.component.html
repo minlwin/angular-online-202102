@@ -1,0 +1,42 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">{{form.value.objectId ? 'Edit' : 'Add'}} Course</div>
+
+        <div class="modal-body">
+            <form [formGroup]="form">
+
+                <div class="mb-2">
+                    <label class="form-label">Course Name</label>
+                    <input formControlName="name" type="text" class="form-control" placeholder="Enter Name">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Level</label>
+                    <select formControlName="level" class="form-control form-select">
+                        <option value="">Select Level</option>
+                        <option *ngFor="let item of levels" [value]="item">{{item}}</option>
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Fees</label>
+                    <input type="number" formControlName="fees" type="email" class="form-control"
+                        placeholder="Enter Fees">
+                </div>
+
+
+                <div class="mb-2">
+                    <label class="form-label">Duration (Hours)</label>
+                    <input formControlName="duration" type="number" class="form-control" placeholder="Enter Duration">
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="form.invalid" (click)="save()" class="btn btn-danger">
+                <i class="bi-save"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
