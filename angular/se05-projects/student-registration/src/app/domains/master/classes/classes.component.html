@@ -1,1 +1,90 @@
-<p>classes works!</p>
+<h3><i class="bi-calendar-event"></i> Class Management</h3>
+
+<div class="row mt-4">
+
+    <div class="col">
+
+        <!-- List -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Teacher</th>
+                    <th>Course</th>
+                    <th>Level</th>
+                    <th>Fees</th>
+                    <th>Start Date</th>
+                    <th>Times</th>
+                    <th>Days</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let item of list">
+                    <td>{{item.teacher.name}}</td>
+                    <td>{{item.course.name}}</td>
+                    <td>{{item.course.level}}</td>
+                    <td>{{item.course.fees | number}} MMK</td>
+                    <td>{{item.startDate | date : 'yyyy-MM-dd'}}</td>
+                    <td>{{item.times | times}}</td>
+                    <td>{{item.days | days}}</td>
+                    <td>
+                        <span (click)="edit(item)"><i class="bi-pencil"></i></span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-3">
+
+        <!-- Search -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi-search"></i> Search
+            </div>
+            <div class="card-body">
+
+                <form [formGroup]="form">
+                    <div>
+                        <label class="form-label">Course</label>
+                        <select formControlName="course" class="form-control form-select">
+                            <option value="">Search One</option>
+                            <option *ngFor="let item of courses" [value]="item.objectId">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Teacher</label>
+                        <select formControlName="teacher" class="form-control form-select">
+                            <option value="">Search Onee</option>
+                            <option *ngFor="let item of teachers" [value]="item.objectId">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label">Date From</label>
+                        <input formControlName="from" type="tel" class="form-control">
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label">Date To</label>
+                        <input formControlName="to" type="tel" class="form-control">
+                    </div>
+                </form>
+
+            </div>
+            <div class="card-footer">
+                <button (click)="search()" class="btn btn-primary d-block mb-2 w-100">Search</button>
+                <button (click)="addNew()" class="btn btn-danger d-block w-100">
+                    Add New
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" id="editDialog">
+    <app-class-edit [data]="target" [teachers]="teachers" [courses]="courses" (onSave)="save($event)"></app-class-edit>
+</div>

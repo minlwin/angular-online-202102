@@ -1,0 +1,62 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">{{form.value.objectId ? 'Edit' : 'Add'}} Class</div>
+
+        <div class="modal-body">
+            <form [formGroup]="form">
+
+                <div class="mb-2">
+                    <label class="form-label">Course</label>
+                    <select formControlName="course" class="form-control form-select">
+                        <option value="">Select One</option>
+                        <option *ngFor="let item of courses" [ngValue]="item">{{item.name}}</option>
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Teacher</label>
+                    <select formControlName="teacher" class="form-control form-select">
+                        <option value="">Select One</option>
+                        <option *ngFor="let item of teachers" [ngValue]="item">{{item.name}}</option>
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Start Date</label>
+                    <input formControlName="startDate" type="date" type="email" class="form-control"
+                        placeholder="Enter Fees">
+                </div>
+
+                <div class="mb-2 row" formGroupName="times">
+                    <div class="col">
+                        <label class="form-label">Start Time</label>
+                        <input formControlName="start" type="time" class="form-control" placeholder="Enter Duration">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">End Time</label>
+                        <input formControlName="end" type="time" class="form-control" placeholder="Enter Duration">
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Days</label>
+
+                    <div class="row" formArrayName="days">
+                        <label class="mr-2" *ngFor="let _ of days.controls; index as i">
+                            <input [formControlName]="i" type="checkbox" class="form-check">
+                            {{i | days}}
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="form.invalid" (click)="save()" class="btn btn-danger">
+                <i class="bi-save"></i> Save
+            </button>
+        </div>
+    </div>
+</div>

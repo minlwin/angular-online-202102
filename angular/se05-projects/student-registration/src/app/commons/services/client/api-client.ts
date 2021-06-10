@@ -13,8 +13,8 @@ export class ApiClient {
         return this.http.get<any>(this.api, { params: form })
     }
 
-    getOne(id: string) {
-        return this.http.get<any>(`${this.api}/${id}`)
+    getOne(id: string, params: any = {}) {
+        return this.http.get<any>(`${this.api}/${id}`, { params: params })
     }
 
     post(data: any) {
