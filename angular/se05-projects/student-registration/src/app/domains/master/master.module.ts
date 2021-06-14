@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonsModule } from 'src/app/commons/commons/commons.module';
@@ -22,6 +22,7 @@ import { TeachersComponent } from './teachers/teachers.component';
     CommonModule,
     CommonsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class MasterModule { }

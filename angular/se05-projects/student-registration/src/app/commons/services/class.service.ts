@@ -1,10 +1,12 @@
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Class } from "../commons/model/class.model";
-import { Pointer } from "../commons/model/pointer.model";
+import { ApiDate, Pointer } from "../commons/model/pointer.model";
 import { ApiClient } from "./client/api-client";
 
+@Injectable({ providedIn: 'any' })
 export class ClassService {
 
     private client: ApiClient
@@ -15,10 +17,11 @@ export class ClassService {
 
     save(data: any) {
 
-        const { course, teacher, objectId, ...others } = data
+        const { course, teacher, startDate, objectId, ...others } = data
 
         const dto = {
             ...others,
+            startDate: new ApiDate(new Date(startDate)),
             course: new Pointer('Course', course.objectId),
             teacher: new Pointer('Teacher', teacher.objectId)
         }
@@ -31,7 +34,9 @@ export class ClassService {
     }
 
     findById(id: string): Observable<Class> {
-        return this.client.getOne(id, { 'include': JSON.stringify(['course', 'teacher']) })
+        return this.client.getOne(id, { 'include': JSON.stringify(['course', 'teacher']) }).pipe(
+            map(resp => this.convert(resp))
+        )
     }
 
     search(form: any) {
@@ -52,12 +57,12 @@ export class ClassService {
 
         // Date From
         if (form.from) {
-            startDate['$ge'] = ''
+            startDate['$ge'] = new ApiDate(new Date(form.from))
         }
 
         // Date To
         if (form.to) {
-            startDate['$le'] = ''
+            startDate['$le'] = new ApiDate(new Date(form.to))
         }
 
         if (Object.keys(startDate).length > 0) {
@@ -68,7 +73,13 @@ export class ClassService {
             include: JSON.stringify(['teacher', 'course']),
             where: JSON.stringify(where)
         }).pipe(
-            map(resp => resp.results)
+            map(resp => resp.results as any[]),
+            map(array => array.map(data => this.convert(data)))
         )
+    }
+
+    private convert(resp: any): any {
+        const { startDate, ...others } = resp
+        return { ...others, startDate: new Date(startDate.iso) }
     }
 }

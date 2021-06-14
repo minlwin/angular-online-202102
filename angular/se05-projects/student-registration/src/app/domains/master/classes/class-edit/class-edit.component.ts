@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Course } from 'src/app/commons/commons/model/course.model';
@@ -22,7 +23,9 @@ export class ClassEditComponent {
   @Input()
   set data(data: any) {
     if (data.objectId) {
-      this.form.patchValue(data)
+      const { startDate, ...others } = data
+      this.form.patchValue(others)
+      this.form.patchValue({ startDate: this.datePipe.transform(startDate, 'yyyy-MM-dd') })
     } else {
       this.form.reset()
       this.form.patchValue({ course: '', teacher: '' })
@@ -32,7 +35,7 @@ export class ClassEditComponent {
   @Output()
   onSave = new EventEmitter
 
-  constructor(builder: FormBuilder) {
+  constructor(builder: FormBuilder, private datePipe: DatePipe) {
     this.form = builder.group({
       objectId: null,
       course: ['', Validators.required],
@@ -52,13 +55,20 @@ export class ClassEditComponent {
     return this.form.get('days') as FormArray
   }
 
+  compareDto(c1: any, c2: any): boolean {
+    return c1.objectId == c2.objectId
+  }
+
+
   validateTimes(controls: AbstractControl): ValidationErrors | null {
 
     const value: { start: string, end: string } = controls.value
 
-    if (value.start.localeCompare(value.end) >= 0) {
-      return {
-        times: 'Start time must be less than End Time.'
+    if (value.start && value.end) {
+      if (value.start.localeCompare(value.end) >= 0) {
+        return {
+          times: 'Start time must be less than End Time.'
+        }
       }
     }
     return null

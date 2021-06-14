@@ -6,6 +6,8 @@ import { User } from "src/app/commons/commons/model/user.model";
 import { RoleService } from "src/app/commons/services/roles.service";
 import { UserService } from "src/app/commons/services/users.service";
 
+const STORAGE_KEY = 'com.jdc.student.security'
+
 @Injectable({ providedIn: 'root' })
 export class SecurityContext {
 
@@ -13,7 +15,17 @@ export class SecurityContext {
     role?: Role
     sessionToken?: string
 
-    constructor(private users: UserService, private roles: RoleService, private router: Router) { }
+    constructor(private users: UserService, private roles: RoleService, private router: Router) {
+        const storageValue = localStorage.getItem(STORAGE_KEY)
+
+        if (storageValue) {
+            const security = JSON.parse(storageValue)
+
+            this.user = security.user
+            this.role = security.role
+            this.sessionToken = security.token
+        }
+    }
 
     get authority(): string {
         return this.role?.name || 'Anonymous'
@@ -24,7 +36,16 @@ export class SecurityContext {
         return this.users.getCurrentUser().pipe(
             tap(user => this.user = user),
             switchMap(user => this.roles.getUserRole(user.objectId!)),
-            tap(role => this.role = role)
+            tap(role => {
+                this.role = role
+                const storage = {
+                    user: this.user,
+                    role: this.role,
+                    token: this.sessionToken
+                }
+
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(storage))
+            })
         )
     }
 

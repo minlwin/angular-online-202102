@@ -5,7 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimesPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: any): unknown {
+
+    if (value) {
+      return `${value.start} - ${value.end}`
+    }
     return null;
   }
 

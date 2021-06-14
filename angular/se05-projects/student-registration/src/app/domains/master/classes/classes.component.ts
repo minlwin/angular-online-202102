@@ -40,6 +40,8 @@ export class ClassesComponent implements AfterViewInit {
 
     courseService.search({}).subscribe(data => this.courses = data)
     teacherService.search({}).subscribe(data => this.teachers = data)
+
+    this.search()
   }
 
   ngAfterViewInit(): void {

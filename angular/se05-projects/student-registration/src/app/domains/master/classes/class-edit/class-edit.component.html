@@ -7,7 +7,7 @@
 
                 <div class="mb-2">
                     <label class="form-label">Course</label>
-                    <select formControlName="course" class="form-control form-select">
+                    <select [compareWith]="compareDto" formControlName="course" class="form-control form-select">
                         <option value="">Select One</option>
                         <option *ngFor="let item of courses" [ngValue]="item">{{item.name}}</option>
                     </select>
@@ -15,7 +15,7 @@
 
                 <div class="mb-2">
                     <label class="form-label">Teacher</label>
-                    <select formControlName="teacher" class="form-control form-select">
+                    <select [compareWith]="compareDto" formControlName="teacher" class="form-control form-select">
                         <option value="">Select One</option>
                         <option *ngFor="let item of teachers" [ngValue]="item">{{item.name}}</option>
                     </select>
@@ -23,8 +23,7 @@
 
                 <div class="mb-2">
                     <label class="form-label">Start Date</label>
-                    <input formControlName="startDate" type="date" type="email" class="form-control"
-                        placeholder="Enter Fees">
+                    <input formControlName="startDate" type="date" class="form-control" placeholder="Enter Fees">
                 </div>
 
                 <div class="mb-2 row" formGroupName="times">
@@ -42,10 +41,12 @@
                     <label class="form-label">Days</label>
 
                     <div class="row" formArrayName="days">
-                        <label class="mr-2" *ngFor="let _ of days.controls; index as i">
-                            <input [formControlName]="i" type="checkbox" class="form-check">
-                            {{i | days}}
-                        </label>
+                        <div *ngFor="let _ of days.controls; index as i" class="form-check form-check-inline">
+                            <input [id]="i" [formControlName]="i" type="checkbox" class="form-check-input">
+                            <label [for]="i" class="mr-2 form-check-label">
+                                {{i | days}}
+                            </label>
+                        </div>
                     </div>
                 </div>
 
