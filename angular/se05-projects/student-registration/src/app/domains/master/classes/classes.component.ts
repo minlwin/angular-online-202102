@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Class } from 'src/app/commons/commons/model/class.model';
 import { Course } from 'src/app/commons/commons/model/course.model';
@@ -24,6 +24,9 @@ export class ClassesComponent implements AfterViewInit {
 
   courses: Course[] = []
   teachers: Teacher[] = []
+
+  @ViewChild('uploadFileInput')
+  fileInput: any
 
   constructor(
     builder: FormBuilder,
@@ -65,6 +68,18 @@ export class ClassesComponent implements AfterViewInit {
   save(data: any) {
     this.service.save(data).subscribe(_ => this.search())
     this.modal.hide()
+  }
+
+  upload() {
+    this.fileInput?.nativeElement?.click()
+  }
+
+  uploadFile(event: any) {
+    this.service.upload(this.form.value.course, this.form.value.teacher, event?.target?.files[0]).subscribe(success => this.search())
+  }
+
+  canUpload(): boolean {
+    return this.form.value.teacher && this.form.value.course
   }
 
 }

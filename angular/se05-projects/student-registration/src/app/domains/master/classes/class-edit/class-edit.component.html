@@ -41,9 +41,9 @@
                     <label class="form-label">Days</label>
 
                     <div class="row" formArrayName="days">
-                        <div *ngFor="let _ of days.controls; index as i" class="form-check form-check-inline">
+                        <div *ngFor="let _ of days.controls; index as i" class="col-3 mb-1 form-check-inline">
                             <input [id]="i" [formControlName]="i" type="checkbox" class="form-check-input">
-                            <label [for]="i" class="mr-2 form-check-label">
+                            <label [for]="i" class="mx-2 form-check-label">
                                 {{i | days}}
                             </label>
                         </div>

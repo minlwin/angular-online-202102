@@ -37,7 +37,7 @@ export class ClassEditComponent {
 
   constructor(builder: FormBuilder, private datePipe: DatePipe) {
     this.form = builder.group({
-      objectId: null,
+      objectId: '',
       course: ['', Validators.required],
       teacher: ['', Validators.required],
       startDate: ['', Validators.required],
@@ -56,7 +56,7 @@ export class ClassEditComponent {
   }
 
   compareDto(c1: any, c2: any): boolean {
-    return c1.objectId == c2.objectId
+    return c1?.objectId == c2?.objectId
   }
 
 

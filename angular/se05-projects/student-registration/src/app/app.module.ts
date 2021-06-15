@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DaysPipe } from './commons/commons/pipes/days.pipe';
 import { ApiClientInterceptor } from './commons/services/client/api-interceptor';
 import { SecurityInterceptor } from './domains/security/services/security.interceptor';
 
@@ -17,6 +18,7 @@ import { SecurityInterceptor } from './domains/security/services/security.interc
     HttpClientModule
   ],
   providers: [
+    DaysPipe,
     { provide: HTTP_INTERCEPTORS, useClass: ApiClientInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useExisting: SecurityInterceptor, multi: true }
   ],

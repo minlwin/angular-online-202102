@@ -56,10 +56,10 @@
                             <option *ngFor="let item of courses" [value]="item.objectId">{{item.name}}</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label class="form-label">Teacher</label>
                         <select formControlName="teacher" class="form-control form-select">
-                            <option value="">Search Onee</option>
+                            <option value="">Search One</option>
                             <option *ngFor="let item of teachers" [value]="item.objectId">{{item.name}}</option>
                         </select>
                     </div>
@@ -76,9 +76,11 @@
             </div>
             <div class="card-footer">
                 <button (click)="search()" class="btn btn-primary d-block mb-2 w-100">Search</button>
-                <button (click)="addNew()" class="btn btn-danger d-block w-100">
+                <button (click)="addNew()" class="btn btn-danger d-block w-100 mb-2">
                     Add New
                 </button>
+                <button [disabled]="!canUpload()" (click)="upload()"
+                    class="btn btn-secondary d-block w-100">Upload</button>
             </div>
         </div>
 
@@ -88,3 +90,7 @@
 <div class="modal fade" data-bs-backdrop="static" tabindex="-1" id="editDialog">
     <app-class-edit [data]="target" [teachers]="teachers" [courses]="courses" (onSave)="save($event)"></app-class-edit>
 </div>
+
+<form class="d-none" action="#">
+    <input #uploadFileInput (change)="uploadFile($event)" type="file">
+</form>

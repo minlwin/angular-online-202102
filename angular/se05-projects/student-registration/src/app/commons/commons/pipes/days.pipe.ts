@@ -21,4 +21,13 @@ export class DaysPipe implements PipeTransform {
     return null;
   }
 
+  getApiData(data: string): boolean[] {
+    const targetDays = data.split(',').map(str => str.trim())
+    return DAYS.map(day => this.contains(day, targetDays))
+  }
+
+  private contains(day: string, array: string[]): boolean {
+    return array.find(str => str === day) != undefined
+  }
+
 }
